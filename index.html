@@ -3,194 +3,231 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Récit - Cinematic Narrative</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Récit — Cinematic Narrative & Editorial Photography</title>
+  <meta name="description" content="Editorial photography and cinematic narrative for the discerning individual. Preserving the intangible essence of time.">
+  
+  <!-- Preconnect Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Load Fonts: Cormorant Garamond, Bodoni Moda (watermark), Hanken Grotesk -->
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Hanken+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Nav -->
-  <nav class="navbar">
-    <div class="nav-brand">RÉCIT</div>
-    <div class="nav-links">
-      <a href="#heritage" class="active">HERITAGE</a>
-      <a href="#method">METHOD</a>
-      <a href="#series">SERIES</a>
-      <a href="#process">PROCESS</a>
-      <a href="team.html">TEAM</a>
-    </div>
-    <a href="#cta" class="nav-btn">BEGIN JOURNEY</a>
-  </nav>
 
-  <!-- Hero -->
-  <section id="heritage" class="hero section">
-    <div class="container grid-12">
+  <!-- Top Navigation Bar -->
+  <header class="site-header" id="top-nav">
+    <a href="#" class="logo" aria-label="Récit Home">Récit</a>
+    <nav aria-label="Main Navigation">
+      <ul class="nav-menu">
+        <li><a href="#work" class="nav-link active">Work</a></li>
+        <li><a href="#narrative" class="nav-link">Narrative</a></li>
+        <li><a href="#studio" class="nav-link">Studio</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="nav-contact">Contact</a>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
       <div class="hero-left">
-        <div class="vertical-text-left">
-          <span>CINEMATIC COLLECTION 2024</span>
-        </div>
-        <h1 class="hero-heading">WE<br>CREATE A<br>CINEMATIC<br>NARRATIVE<br>FOR YOUR<br>SPECIAL<br>MEMORIES.</h1>
-        
-        <div class="hero-sub">
-          <span class="intro-label">INTRO</span>
-          <p class="intro-text">Capturing the moments where daily life becomes cinema. A cinematic mise-en-scène that captures food and places as a single narrative.</p>
-        </div>
-        <a href="#cta" class="btn-link">BEGIN JOURNEY</a>
+        <h1 class="hero-title">
+          <span>WE</span>
+          <span>CREATE</span>
+          <span>A</span>
+          <span>CINEMATIC</span>
+          <span>NARRATIVE</span>
+          <span>FOR</span>
+          <span>YOUR</span>
+          <span>SPECIAL</span>
+          <span>MEMORIES.</span>
+        </h1>
+        <p class="hero-desc">
+          Preserving the intangible essence of time through the lens of sophisticated visual storytelling and editorial precision.
+        </p>
       </div>
-      
       <div class="hero-right">
-        <div class="hero-image-box">
-          <img src="http://localhost:3845/assets/5cf67cb90d7fc160983f0302941a6cb99221fdb3.png" alt="Hero">
+        <img src="assets/cinematic_corridor.png" alt="A cinematic corridor with light shining through the doorway casting a silhouette of a person" loading="eager">
+      </div>
+    </section>
+
+    <!-- Mission Quote Section -->
+    <section class="quote-section" id="mission">
+      <div class="watermark-container">
+        <div class="watermark" aria-hidden="true">E</div>
+      </div>
+      <div class="quote-container">
+        <blockquote class="quote-text">
+          "Beyond simple records, don't you want to feel the emotions and atmosphere of that day again?"
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Intro Feature Section -->
+    <section class="intro-section" id="about">
+      <div class="intro-col-label">
+        <div class="intro-label">Story of Emotion</div>
+      </div>
+      <div class="intro-col-text">
+        <h2 class="intro-heading">A delicate approach to the moments that matter most.</h2>
+        <p class="intro-desc">
+          We believe that true luxury lies in the details that often go unnoticed. Our philosophy is rooted in the pursuit of the 'cinematic soul'—the intangible atmosphere that turns a mere visual into a lasting memory.
+        </p>
+      </div>
+      <div class="intro-col-image">
+        <div class="intro-image-wrapper">
+          <img src="assets/luxury_dessert.png" alt="Delicate luxury dessert plated beautifully on a table" loading="lazy">
         </div>
-        <div class="vertical-text-right">
-          <span>HERITAGE</span>
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Problem -->
-  <section class="problem section">
-    <div class="problem-bg-text">EMOTION</div>
-    <h2 class="problem-heading">Beyond simple records,<br>don't you want to feel the emotions<br>and atmosphere of that day again?</h2>
-  </section>
-
-  <!-- Solution -->
-  <section id="method" class="solution section">
-    <div class="container grid-12">
-      <div class="solution-left">
-         <div class="vertical-text-essence"><span>ESSENCE</span></div>
-         <h3 class="solution-heading">Maximize the emotion<br>by recording meals<br>and landscapes in<br>unfamiliar travel<br>destinations<br>like a scene from a<br>movie.</h3>
-      </div>
-      <div class="solution-right">
-         <div class="solution-image-box">
-           <img src="http://localhost:3845/assets/9768dabc234c9b798138a5f5526b36387d277e8b.png" alt="Solution">
-         </div>
-         <div class="vertical-text-special"><span>SPECIAL DROP</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section id="series" class="features section">
-    <div class="container features-layout">
-      <div class="features-sidebar">
-        <div class="vertical-title"><span>NARRATIVE</span></div>
-        <div class="vertical-subtitle"><span>CORE ELEMENTS</span></div>
+    <!-- Narrative Gallery Section -->
+    <section class="gallery-section" id="narrative">
+      <div class="gallery-header">
+        <h2 class="gallery-title">NARRATIVE</h2>
+        <span class="gallery-subtitle">Exploring the human experience</span>
       </div>
       
-      <div class="features-cards">
-        <div class="card card-1">
-          <div class="card-num">001</div>
-          <div class="card-image-box">
-            <img src="http://localhost:3845/assets/29de360293c9c0772337d8695c89433cd921454b.png" alt="Authentic Narrative">
+      <div class="gallery-grid">
+        <!-- Item 01 -->
+        <article class="gallery-item gallery-item-1">
+          <div class="gallery-img-wrapper">
+            <img src="assets/vintage_camera.png" alt="Vintage film camera sitting on a rustic wooden table next to a coffee cup" loading="lazy">
           </div>
-          <h4 class="card-title">NARRATIVE<br>AUTHENTICITY</h4>
-          <p class="card-desc">Recording the unique story of the subject.</p>
-        </div>
+          <h3 class="gallery-item-title">01. The Essence of Analog</h3>
+        </article>
         
-        <div class="card card-2">
-          <div class="card-num">002</div>
-          <div class="card-image-box">
-            <img src="http://localhost:3845/assets/4025ffe63c0732061440b74fb49444c100ccf3f4.png" alt="Aesthetic">
+        <!-- Item 02 -->
+        <article class="gallery-item gallery-item-2">
+          <div class="gallery-img-wrapper">
+            <img src="assets/ocean_waves.png" alt="Deep blue textured ocean waves rolling in high contrast light" loading="lazy">
           </div>
-          <h4 class="card-title">AESTHETIC MISE-EN-SCÈNE</h4>
-          <p class="card-desc">Unrivaled color and composition.</p>
-        </div>
+          <h3 class="gallery-item-title">02. Fluidity of Time</h3>
+        </article>
         
-        <div class="card card-3">
-          <div class="card-num">003</div>
-          <div class="card-image-box">
-            <img src="http://localhost:3845/assets/f2e98b8fa7e098f27a9b56a62208c8bce652b5af.png" alt="Emotional Whitespace">
+        <!-- Item 03 -->
+        <article class="gallery-item gallery-item-3">
+          <div class="gallery-img-wrapper">
+            <img src="assets/solitary_tree.png" alt="A single solitary tree standing in a foggy misty field under soft light" loading="lazy">
           </div>
-          <h4 class="card-title">EMOTIONAL VOID</h4>
-          <p class="card-desc">Providing immersion and relaxation.</p>
-        </div>
+          <h3 class="gallery-item-title">03. Silent Dialogues</h3>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Process -->
-  <section id="process" class="process section">
-    <div class="container">
+    <!-- Process Section -->
+    <section class="process-section" id="studio">
       <div class="process-header">
-        <h2 class="process-title">PROCESS</h2>
-        <p class="process-subtitle">THE MAKING OF A STORY</p>
+        <h2 class="process-title">Process</h2>
       </div>
       
-      <div class="process-steps">
+      <div class="process-rows">
         <!-- Step 1 -->
-        <div class="step grid-12">
-          <div class="step-image-col step-1-img">
-            <span class="step-bg-num">01</span>
-            <div class="step-image-box">
-              <img src="http://localhost:3845/assets/c53ec8d43a5e0ebfb4643e6ecb82d1997f048e8a.png" alt="Step 1">
-            </div>
+        <div class="process-row">
+          <div class="process-image-wrapper">
+            <img src="assets/open_book.png" alt="An open book lit by warm golden sunlight shining across the pages" loading="lazy">
           </div>
-          <div class="step-text-col step-1-text">
-            <h4 class="step-heading">THE BEGINNING OF<br>RECORDS</h4>
-            <p class="step-desc">Capturing precious moments. Even the smallest<br>details and the flow of the air.</p>
-          </div>
-        </div>
-        
-        <!-- Step 2 -->
-        <div class="step grid-12 step-reverse">
-          <div class="step-text-col step-2-text text-right">
-            <h4 class="step-heading">CINEMATIC EDITING</h4>
-            <p class="step-desc">Adding mise-en-scène to complete the narrative. The<br>perfect harmony of light and shadow.</p>
-          </div>
-          <div class="step-image-col step-2-img">
-            <span class="step-bg-num">02</span>
-            <div class="step-image-box">
-              <img src="http://localhost:3845/assets/29cafed74875338094d860de59849c1ba521d56f.png" alt="Step 2">
-            </div>
+          <div class="process-text">
+            <span class="process-step">STEP 01</span>
+            <h3 class="process-step-title">Discovery</h3>
+            <p class="process-step-desc">
+              The final narrative is woven together into a timeless piece of cinematic art, delivered in a format that transcends temporary trends.
+            </p>
           </div>
         </div>
-        
+
+        <!-- Step 2 (Reversed / Right-Aligned) -->
+        <div class="process-row reversed">
+          <div class="process-image-wrapper">
+            <img src="assets/magnifying_glass.png" alt="A magnifying glass laying over complex blueprint plans on a desk" loading="lazy">
+          </div>
+          <div class="process-text">
+            <span class="process-step">STEP 02</span>
+            <h3 class="process-step-title">Curation</h3>
+            <p class="process-step-desc">
+              The final narrative is woven together into a timeless piece of cinematic art, delivered in a format that transcends temporary trends.
+            </p>
+          </div>
+        </div>
+
         <!-- Step 3 -->
-        <div class="step grid-12">
-          <div class="step-image-col step-3-img">
-            <span class="step-bg-num">03</span>
-            <div class="step-image-box">
-              <img src="http://localhost:3845/assets/03c6b91d8d54712677d930ccc1523fc3ddfc031e.png" alt="Step 3">
-            </div>
+        <div class="process-row">
+          <div class="process-image-wrapper">
+            <img src="assets/luxury_box.png" alt="A premium luxury delivery box with textured paper and minimal branding" loading="lazy">
           </div>
-          <div class="step-text-col step-3-text">
-            <h4 class="step-heading">ETERNAL MEMORIES</h4>
-            <p class="step-desc">Keep your own movie. A texture that doesn't fade<br>even as time passes.</p>
+          <div class="process-text">
+            <span class="process-step">STEP 03</span>
+            <h3 class="process-step-title">Creation</h3>
+            <p class="process-step-desc">
+              The final narrative is woven together into a timeless piece of cinematic art, delivered in a format that transcends temporary trends.
+            </p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA -->
-  <section id="cta" class="cta section">
-    <div class="cta-subtitle">FINAL FRAME</div>
-    <h2 class="cta-heading">Create your narrative now.</h2>
-    <a href="#cta" class="btn-link">BEGIN JOURNEY</a>
-  </section>
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+      <h2 class="cta-heading">Create your narrative now.</h2>
+      <a href="mailto:inquire@recit.com" class="cta-button">Inquire for 2025</a>
+    </section>
+  </main>
 
-  <!-- Footer -->
-  <footer class="footer section">
-    <div class="container grid-12">
-      <div class="footer-left">
-        <div class="footer-brand">
-          <img src="http://localhost:3845/assets/0104fc29482a30f400794c8f062552c09e7f1461.png" alt="Logo" class="footer-logo-img">
-          <span>RÉCIT</span>
-        </div>
-        <p class="footer-copy">© 2024 RÉCIT.<br>CURATED BY KIM MIN-JU & MOON KYUNG-JAE.</p>
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <a href="#" class="logo logo-large" aria-label="Récit Home">Récit</a>
+        <p class="footer-desc">
+          Editorial photography and cinematic narrative for the discerning individual.
+        </p>
       </div>
+
+      <!-- Links groups -->
+      <div class="footer-links-group">
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Links</h4>
+          <a href="#journal" class="footer-link">Journal</a>
+          <a href="#archive" class="footer-link">Archive</a>
+          <a href="#studio" class="footer-link">Studio</a>
+        </div>
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Contact</h4>
+          <a href="#general" class="footer-link">General</a>
+          <a href="#social" class="footer-link">Social</a>
+          <a href="#privacy" class="footer-link">Privacy</a>
+        </div>
+      </div>
+
+      <!-- Copyright and social links -->
       <div class="footer-right">
-        <a href="#">ARCHIVES</a>
-        <a href="#">PRIVACY</a>
-        <a href="#">PRESS</a>
-        <a href="#">TERMS</a>
+        <p class="footer-copyright">
+          &copy; 2024 CINEMATIC NARRATIVE. ALL RIGHTS RESERVED.
+        </p>
+        <div class="footer-socials">
+          <a href="#instagram" aria-label="Instagram">
+            <img src="assets/icon_instagram.svg" alt="Instagram logo icon" class="footer-social-icon">
+          </a>
+          <a href="#twitter" aria-label="Twitter">
+            <img src="assets/icon_twitter.svg" alt="Twitter logo icon" class="footer-social-icon">
+          </a>
+          <a href="#facebook" aria-label="Facebook">
+            <img src="assets/icon_facebook.svg" alt="Facebook logo icon" class="footer-social-icon">
+          </a>
+        </div>
       </div>
+
     </div>
   </footer>
 
-  <script src="main.js"></script>
+  <!-- Interactive Logic -->
+  <script src="script.js"></script>
 </body>
 </html>
