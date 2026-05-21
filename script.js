@@ -1,7 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Page Transition Overlay ---
+  const overlay = document.createElement('div');
+  overlay.className = 'page-transition-overlay';
+  document.body.appendChild(overlay);
+
+  // Fade out overlay on page enter (double rAF so the initial black state is painted first)
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      overlay.classList.add('faded');
+    });
+  });
+
+  // Intercept cross-page link clicks: fade to black, then navigate
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto:') && href.split('#')[0].endsWith('.html')) {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        overlay.classList.remove('faded');
+        overlay.style.pointerEvents = 'auto';
+        setTimeout(() => { window.location.href = href; }, 650);
+      });
+    }
+  });
+
+
   // --- Navigation Link Highlighter on Scroll ---
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
+  let isManualScrolling = false;
+  let scrollTimeout;
 
   const navObserverOptions = {
     root: null,
@@ -10,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const navObserver = new IntersectionObserver((entries) => {
+    if (isManualScrolling) return;
+
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute('id');
@@ -26,6 +56,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   sections.forEach(section => {
     navObserver.observe(section);
+  });
+
+  // Lock observer updates during click navigation to prevent intermediate link highlights
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      isManualScrolling = true;
+      clearTimeout(scrollTimeout);
+
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+
+      scrollTimeout = setTimeout(() => {
+        isManualScrolling = false;
+      }, 800); // Wait for smooth scroll animation to finish
+    });
   });
 
 

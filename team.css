@@ -1,0 +1,246 @@
+/* Team Page Styles */
+
+/* ---- Hero ---- */
+.tp-hero {
+  position: relative;
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tp-hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.tp-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  mix-blend-mode: multiply;
+}
+
+.tp-hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  text-align: center;
+}
+
+.tp-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(64px, 8vw, 96px);
+  font-weight: 700;
+  font-style: italic;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.tp-hero-subtitle {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4.4px;
+  text-transform: uppercase;
+  color: rgba(253, 247, 255, 0.8);
+}
+
+.tp-hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  opacity: 0.7;
+}
+
+/* ---- Profile Sections ---- */
+.tp-profile {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 40px;
+  padding: 120px 64px;
+  background: var(--color-bg-primary);
+  align-items: center;
+}
+
+.tp-profile--reversed {
+  grid-template-columns: 7fr 5fr;
+  background: var(--color-bg-secondary);
+}
+
+.tp-profile-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tp-profile-role {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.tp-profile-name {
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 3.8vw, 48px);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.tp-profile-desc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.08em;
+  max-width: 448px;
+  padding: 11px 0 53px;
+}
+
+.tp-profile-link {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 13px;
+  transition: border-color var(--transition-quick), color var(--transition-quick);
+}
+
+.tp-profile-link:hover {
+  border-color: var(--color-text-primary);
+}
+
+.tp-profile-img-wrapper {
+  overflow: hidden;
+}
+
+.tp-profile-img-inner {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.tp-profile-img-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: transform var(--transition-smooth);
+}
+
+#minju .tp-profile-img-inner img {
+  object-position: center 25%;
+}
+
+.tp-profile-img-inner:hover img {
+  transform: scale(1.03);
+}
+
+/* White mix-blend saturation overlay to desaturate the image (matches Figma) */
+.tp-img-desat {
+  position: absolute;
+  inset: 0;
+  background: white;
+  mix-blend-mode: saturation;
+  pointer-events: none;
+}
+
+/* ---- Quote Section ---- */
+.tp-quote {
+  background: var(--color-bg-secondary);
+  padding: 180px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tp-quote-inner {
+  max-width: 896px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.tp-quote-ornament {
+  width: 40px;
+  height: auto;
+  opacity: 0.55;
+}
+
+.tp-quote-text {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 3.5vw, 48px);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--color-text-primary);
+  padding-bottom: 16px;
+}
+
+.tp-quote-divider {
+  width: 80px;
+  height: 1px;
+  background: var(--color-text-secondary);
+  opacity: 0.6;
+}
+
+.tp-quote-label {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3.3px;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 768px) {
+  .tp-hero {
+    height: calc(100vh - 70px);
+  }
+
+  .tp-profile,
+  .tp-profile--reversed {
+    grid-template-columns: 1fr;
+    padding: 64px 24px;
+    gap: 32px;
+  }
+
+  .tp-profile--reversed .tp-profile-img-wrapper {
+    order: -1;
+  }
+
+  .tp-profile-desc {
+    padding-bottom: 24px;
+  }
+
+  .tp-quote {
+    padding: 96px 24px;
+  }
+}
