@@ -833,3 +833,208 @@
     display: none;
   }
 }
+
+/* =============================================
+   Added to Cart Popup Modal Styles
+   ============================================= */
+.cart-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(29, 27, 32, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+              visibility 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cart-popup-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.cart-popup {
+  background: #faf8fc;
+  border: 1px solid var(--color-border);
+  width: 100%;
+  max-width: 440px;
+  padding: 40px;
+  position: relative;
+  transform: scale(0.95) translateY(12px);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 24px 64px rgba(29, 27, 32, 0.12);
+}
+
+.cart-popup-overlay.active .cart-popup {
+  transform: scale(1) translateY(0);
+}
+
+.cart-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.cart-popup-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(24px, 3.5vw, 30px);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.cart-popup-close {
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: opacity var(--transition-quick), transform var(--transition-quick);
+}
+
+.cart-popup-close:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.15);
+}
+
+.cart-popup-close svg {
+  display: block;
+}
+
+.cart-popup-divider {
+  border: none;
+  height: 1px;
+  background: var(--color-text-primary);
+  margin: 0 0 28px 0;
+}
+
+.cart-popup-divider.subtle {
+  background: var(--color-border);
+  opacity: 0.4;
+  margin: 28px 0 28px 0;
+}
+
+.cart-popup-body {
+  margin-bottom: 0;
+}
+
+.cart-popup-product {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.cart-popup-img-wrap {
+  width: 96px;
+  height: 96px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--color-bg-secondary);
+}
+
+.cart-popup-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-popup-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cart-popup-prod-name {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(20px, 2.5vw, 24px);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.cart-popup-prod-price {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.cart-popup-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-popup-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 24px;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3.3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition-quick), color var(--transition-quick), border-color var(--transition-quick);
+  text-decoration: none;
+}
+
+.btn-buy-now {
+  background: var(--color-text-primary);
+  border: 1px solid var(--color-text-primary);
+  color: #faf8fc;
+}
+
+.btn-buy-now:hover {
+  background: transparent;
+  color: var(--color-text-primary);
+}
+
+.btn-view-cart {
+  background: transparent;
+  border: 1px solid var(--color-text-primary);
+  color: var(--color-text-primary);
+}
+
+.btn-view-cart:hover {
+  background: var(--color-text-primary);
+  color: #faf8fc;
+}
+
+@media (max-width: 480px) {
+  .cart-popup {
+    padding: 32px 24px;
+  }
+  .cart-popup-product {
+    gap: 16px;
+  }
+  .cart-popup-img-wrap {
+    width: 80px;
+    height: 80px;
+  }
+}
+
