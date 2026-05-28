@@ -719,6 +719,41 @@
   color: var(--color-text-primary);
 }
 
+/* ---- Scroll Reveal Animations ---- */
+.pd-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform;
+}
+
+.pd-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pd-reveal-delay-1 { transition-delay: 0.12s; }
+.pd-reveal-delay-2 { transition-delay: 0.24s; }
+.pd-reveal-delay-3 { transition-delay: 0.36s; }
+
+/* ---- Performance Optimizations ---- */
+.pd-instrument-img img {
+  will-change: transform;
+}
+
+.pd-buy-img img {
+  will-change: transform;
+}
+
+.pd-narrative,
+.pd-sequence,
+.pd-instruments,
+.pd-immersive,
+.pd-buy {
+  contain: layout style;
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 1024px) {
   .pd-instruments-grid {

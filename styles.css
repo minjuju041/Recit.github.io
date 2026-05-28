@@ -476,6 +476,7 @@
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-smooth);
+    will-change: transform;
   }
 
   .gallery-img-wrapper:hover img {
@@ -512,6 +513,7 @@
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-smooth);
+    will-change: transform;
   }
 
   .process-image-wrapper:hover img {
@@ -544,19 +546,50 @@
     max-width: 440px;
   }
 
-  /* Page Transition Overlay */
+  /* Page Transition Overlay — opacity + scale (GPU 효율) */
   .page-transition-overlay {
     position: fixed;
     inset: 0;
-    background: #000;
     z-index: 9999;
-    opacity: 1;
     pointer-events: none;
-    transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+    background: var(--color-bg-primary);
+    opacity: 0;
+    transform: scale(1);
+    transition:
+      opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
   }
 
-  .page-transition-overlay.faded {
+  .page-transition-overlay.blurred {
+    opacity: 1;
+    transform: scale(1.015);
+    pointer-events: auto;
+  }
+
+  /* Scroll Reveal — CSS에서 정의 (JS 동적 주입 제거) */
+  .reveal {
     opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.12s; }
+  .reveal-delay-2 { transition-delay: 0.24s; }
+  .reveal-delay-3 { transition-delay: 0.36s; }
+
+  /* CSS Contain — 섹션 간 레이아웃 재계산 차단 */
+  .quote-section,
+  .gallery-section,
+  .intro-section,
+  .process-section,
+  .cta-section {
+    contain: layout style;
   }
 
   /* CTA Button */

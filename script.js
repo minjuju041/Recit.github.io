@@ -1,25 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Page Transition Overlay ---
+  // --- Page Transition Overlay (blur) ---
   const overlay = document.createElement('div');
   overlay.className = 'page-transition-overlay';
   document.body.appendChild(overlay);
 
-  // Fade out overlay on page enter (double rAF so the initial black state is painted first)
+  // Page enter: instantly start blurred, then smoothly unblur
+  overlay.classList.add('blurred');
+  overlay.style.transition = 'none';
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      overlay.classList.add('faded');
+      overlay.style.removeProperty('transition');
+      overlay.classList.remove('blurred');
     });
   });
 
-  // Intercept cross-page link clicks: fade to black, then navigate
+  // Intercept cross-page link clicks: blur out, then navigate
   document.querySelectorAll('a[href]').forEach(link => {
     const href = link.getAttribute('href');
     if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto:') && href.split('#')[0].endsWith('.html')) {
       link.addEventListener('click', e => {
         e.preventDefault();
-        overlay.classList.remove('faded');
-        overlay.style.pointerEvents = 'auto';
-        setTimeout(() => { window.location.href = href; }, 650);
+        overlay.style.removeProperty('transition');
+        overlay.classList.add('blurred');
+        setTimeout(() => { window.location.href = href; }, 500);
       });
     }
   });
@@ -75,24 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // --- Scroll Reveal Animations ---
-  // Create styles for reveal animation dynamically or use stylesheet rules
-  const styleSheet = document.createElement("style");
-  styleSheet.innerText = `
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    /* Delay children animations for custom visual staggering */
-    .reveal-delay-1 { transition-delay: 0.15s; }
-    .reveal-delay-2 { transition-delay: 0.3s; }
-    .reveal-delay-3 { transition-delay: 0.45s; }
-  `;
-  document.head.appendChild(styleSheet);
 
   const revealObserverOptions = {
     root: null,
