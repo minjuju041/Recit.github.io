@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Outer Scope Variables for Global Navigation & State Sync ---
+  const siteHeader = document.querySelector('.site-header');
+  const landingContainer = document.querySelector('.landing-container');
+  const landingScrollHint = document.querySelector('.landing-scroll');
+  const hasLocalHash = window.location.hash && ['#hero', '#narrative', '#about', '#studio', '#contact'].includes(window.location.hash);
+
+  let isLocked = false;
+  let virtualProgress = 0;
+  let autoScrollTriggered = false;
+  let isTransitioning = false;
+  let ldLetterSpacing = -0.04;
+  let ldScale = 1;
+  let renderCanvas = null;
+
   // --- Page Transition Overlay (blur) ---
   const overlay = document.createElement('div');
   overlay.className = 'page-transition-overlay';
@@ -64,6 +78,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // Lock observer updates during click navigation to prevent intermediate link highlights
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
+      // If the navbar is in dark mode (on the landing page), revert it immediately before scrolling
+      if (siteHeader && siteHeader.classList.contains('nav--on-dark')) {
+        siteHeader.classList.remove('nav--on-dark');
+        isLocked = false;
+        virtualProgress = 1;
+        autoScrollTriggered = true;
+        isTransitioning = false;
+
+        // Render canvas at progress 1 (fully expanded text)
+        if (typeof renderCanvas === 'function') {
+          ldLetterSpacing = -0.04 + 0.14 * virtualProgress;
+          ldScale         = 1    + 0.3  * virtualProgress;
+          renderCanvas();
+        }
+        if (landingScrollHint) {
+          landingScrollHint.classList.add('hide');
+        }
+      }
+
       isManualScrolling = true;
       clearTimeout(scrollTimeout);
 
@@ -119,17 +152,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // · 투명해진 글자 영역에서만 영상이 보임 (mix-blend-mode 없음 → 빠름)
   // · 스크롤 휠로 virtualProgress 0→1 증가 시 자간/크기가 캔버스에 반영됨
   // ══════════════════════════════════════════════════════════════════
-  const landingContainer  = document.querySelector('.landing-container');
   const landingSection    = document.querySelector('.landing-section');
   const landingCanvas     = document.querySelector('.logo-canvas');
-  const landingScrollHint = document.querySelector('.landing-scroll');
   const heroSection       = document.querySelector('#hero');
-  const siteHeader        = document.querySelector('.site-header');
-  if (siteHeader && landingContainer) {
+  if (siteHeader && landingContainer && !hasLocalHash) {
     siteHeader.classList.add('nav--on-dark');
   }
 
   if (landingContainer && landingCanvas && heroSection) {
+    if (hasLocalHash) {
+      isLocked = false;
+      virtualProgress = 1;
+      autoScrollTriggered = true;
+      ldLetterSpacing = 0.1;
+      ldScale = 1.3;
+      if (landingScrollHint) {
+        landingScrollHint.classList.add('hide');
+      }
+    } else {
+      isLocked = true;
+    }
 
     // ── 캔버스 상태 ────────────────────────────────────────────────
     const BRAND      = 'Récit';
@@ -137,12 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const BG         = '#000000';   // 완전한 검정 = 영상 0% 노출
     let   ldW = 0, ldH = 0;
     let   ldBaseFontSize  = 200;    // 뷰포트 너비에 맞게 재계산
-    let   ldLetterSpacing = -0.04;  // em 단위 자간
-    let   ldScale         = 1;      // 텍스트 스케일
     let   resizeTimer;
 
     // ── Canvas 렌더 ─────────────────────────────────────────────────
-    function renderCanvas() {
+    renderCanvas = function() {
       if (!landingCanvas || ldW <= 0 || ldH <= 0) return;
 
       const dpr  = window.devicePixelRatio || 1;
@@ -233,13 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ── 스크롤 애니메이션 ──────────────────────────────────────────
-    let virtualProgress     = 0;
-    let isLocked            = true;
-    let autoScrollTriggered = false;
-    let isTransitioning     = false;
-
     window.addEventListener('scroll', () => {
-      if (siteHeader) siteHeader.classList.toggle('nav--on-dark', window.scrollY < 50);
+      if (siteHeader && !autoScrollTriggered) {
+        siteHeader.classList.toggle('nav--on-dark', window.scrollY < 50);
+      }
       if (window.scrollY === 0) {
         virtualProgress = 0; isLocked = true; autoScrollTriggered = false; isTransitioning = false;
         ldLetterSpacing = -0.04; ldScale = 1;
