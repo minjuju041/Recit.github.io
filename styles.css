@@ -101,13 +101,76 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 64px;
-    transition: background-color var(--transition-quick), border-color var(--transition-quick);
+    transition: background-color 0.5s cubic-bezier(0.4,0,0.2,1),
+                border-color     0.5s cubic-bezier(0.4,0,0.2,1),
+                color             0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* Navigation turns white while the dark landing covers the top half */
+  .site-header.nav--on-dark {
+    background: transparent;
+    border-bottom-color: transparent;
+  }
+  .site-header.nav--on-dark .logo,
+  .site-header.nav--on-dark .nav-link,
+  .site-header.nav--on-dark .nav-contact {
+    color: rgba(255,255,255,0.85);
+  }
+  .site-header.nav--on-dark .nav-link:hover,
+  .site-header.nav--on-dark .nav-link.active,
+  .site-header.nav--on-dark .nav-contact:hover {
+    color: #ffffff;
   }
 
   .nav-right {
     display: flex;
     gap: 32px;
     align-items: center;
+  }
+
+  /* Landing Section & Container */
+  .landing-container {
+    height: 100vh;
+    position: relative;
+    background: #000;
+  }
+
+  .landing-section {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background: #000;
+    overflow: hidden;
+    /* contain: 이 섹션 바깥으로 레이아웃/페인트 전파 차단 */
+    contain: layout style paint;
+  }
+
+  /* 배경 영상 — 캔버스 텍스트 구멍 뒤에서만 보임 */
+  .logo-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    z-index: 1;
+    /* GPU 레이어 분리로 디코딩 부하 격리 */
+    will-change: transform;
+  }
+
+  /* ── Canvas 마스크 ──────────────────────────────────
+     · 전체를 검정으로 채운 뒤 destination-out으로
+       폰트 모양만 투명하게 뚫어냄
+     · 투명 영역 아래 비디오가 비쳐 텍스트 안에서만 영상이 보임
+     · mix-blend-mode 없음 → GPU 컴포지팅 오버헤드 제로
+     ───────────────────────────────────────────────── */
+  .logo-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: block;
   }
 
   /* Hero Section */
@@ -269,6 +332,142 @@
 }
 
 @layer components {
+  /* Landing Section Components */
+  /* 투명 클릭 영역 — 시각적 렌더링은 canvas가 담당 */
+  .landing-logo {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: block;
+    cursor: pointer;
+  }
+
+  /* 스크롤 완료 → 다음 페이지 진입 전환 오버레이 */
+  .landing-flash {
+    position: fixed;
+    inset: 0;
+    z-index: 800;
+    background: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .landing-flash.in { opacity: 1; pointer-events: auto; }
+
+  /* ── 워크(hero) 섹션 흰 화면에서 등장 ──────────────────────────
+     .wt-entering  : 콘텐츠를 미리 투명하게
+     .wt-revealed  : 화이트 페이드아웃과 함께 콘텐츠 페이드인
+     ─────────────────────────────────────────────────────────── */
+  .hero-section.wt-entering .hero-left,
+  .hero-section.wt-entering .hero-right {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .hero-section.wt-entering .hero-left,
+  .hero-section.wt-entering .hero-right {
+    transition: none;   /* 진입 시엔 즉시 숨김 */
+  }
+
+  .hero-section.wt-revealed .hero-left {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1.1s cubic-bezier(0.25, 1, 0.5, 1) 0.1s,
+                transform 1.1s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
+  }
+
+  .hero-section.wt-revealed .hero-right {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1.1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s,
+                transform 1.1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
+  }
+
+  .landing-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;          /* 마스크 오버레이 위에 표시 */
+    animation: landingFadeUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    will-change: opacity, transform;
+    pointer-events: none;
+  }
+
+  .landing-scroll.hide {
+    opacity: 0;
+    transform: translate(-50%, 15px);
+  }
+
+  .landing-scroll-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .landing-scroll-line {
+    width: 1px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .landing-scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    animation: scrollLineSlide 1.8s cubic-bezier(0.4, 0, 0.2, 1) 1s infinite;
+  }
+
+  @keyframes landingFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scrollLineSlide {
+    0%   { top: -100%; }
+    50%  { top: 0%; }
+    100% { top: 100%; }
+  }
+
+  /* ── Nav dark-background override (must be in components to beat .logo specificity) ── */
+  .site-header.nav--on-dark {
+    background: transparent;
+    border-bottom-color: transparent;
+  }
+  .site-header.nav--on-dark .logo,
+  .site-header.nav--on-dark .nav-link,
+  .site-header.nav--on-dark .nav-contact {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .site-header.nav--on-dark .nav-link:hover,
+  .site-header.nav--on-dark .nav-link.active,
+  .site-header.nav--on-dark .nav-contact:hover {
+    color: #ffffff;
+  }
+  .site-header.nav--on-dark .nav-link::after {
+    background: rgba(255, 255, 255, 0.6);
+  }
+
   /* Logo */
   .logo {
     font-family: var(--font-heading);
