@@ -108,6 +108,11 @@
 
   /* Navigation turns white while the dark landing covers the top half */
   .site-header.nav--on-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
     background: transparent;
     border-bottom-color: transparent;
   }
@@ -451,6 +456,11 @@
 
   /* ── Nav dark-background override (must be in components to beat .logo specificity) ── */
   .site-header.nav--on-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
     background: transparent;
     border-bottom-color: transparent;
   }

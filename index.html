@@ -41,34 +41,35 @@
     </div>
   </header>
 
+  <!-- Landing Container (Scroll Track for Sticky Interaction) -->
+  <div class="landing-container">
+    <section class="landing-section" id="landing" aria-label="Récit Main Landing">
+
+      <!-- Background video (plays through canvas text cutout only) -->
+      <video class="logo-video" autoplay muted loop playsinline
+             poster="assets/cinematic_corridor.jpg">
+        <source src="assets/hero_video.mp4" type="video/mp4">
+      </video>
+
+      <!-- Canvas mask: solid background with text punched out (destination-out)
+           Video shows ONLY through transparent letter shapes             -->
+      <canvas class="logo-canvas" aria-hidden="true"></canvas>
+
+      <!-- Accessible click target (visually transparent, z-index above canvas) -->
+      <a href="#hero" class="landing-logo" aria-label="Récit — scroll to work"></a>
+
+      <!-- 전환 오버레이: 스크롤 완료 시 흰색으로 페이드인 -->
+      <div class="landing-flash" aria-hidden="true"></div>
+
+      <div class="landing-scroll" aria-hidden="true">
+        <span class="landing-scroll-label">Scroll</span>
+        <div class="landing-scroll-line"></div>
+      </div>
+
+    </section>
+  </div>
+
   <main>
-    <!-- Landing Container (Scroll Track for Sticky Interaction) -->
-    <div class="landing-container">
-      <section class="landing-section" id="landing" aria-label="Récit Main Landing">
-
-        <!-- Background video (plays through canvas text cutout only) -->
-        <video class="logo-video" autoplay muted loop playsinline
-               poster="assets/cinematic_corridor.jpg">
-          <source src="assets/hero_video.mp4" type="video/mp4">
-        </video>
-
-        <!-- Canvas mask: solid background with text punched out (destination-out)
-             Video shows ONLY through transparent letter shapes             -->
-        <canvas class="logo-canvas" aria-hidden="true"></canvas>
-
-        <!-- Accessible click target (visually transparent, z-index above canvas) -->
-        <a href="#hero" class="landing-logo" aria-label="Récit — scroll to work"></a>
-
-        <!-- 전환 오버레이: 스크롤 완료 시 흰색으로 페이드인 -->
-        <div class="landing-flash" aria-hidden="true"></div>
-
-        <div class="landing-scroll" aria-hidden="true">
-          <span class="landing-scroll-label">Scroll</span>
-          <div class="landing-scroll-line"></div>
-        </div>
-
-      </section>
-    </div>
 
     <!-- Hero Section -->
     <section class="hero-section" id="hero">

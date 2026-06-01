@@ -125,8 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const landingScrollHint = document.querySelector('.landing-scroll');
   const heroSection       = document.querySelector('#hero');
   const siteHeader        = document.querySelector('.site-header');
-
-  if (siteHeader) siteHeader.classList.add('nav--on-dark');
+  if (siteHeader && landingContainer) {
+    siteHeader.classList.add('nav--on-dark');
+  }
 
   if (landingContainer && landingCanvas && heroSection) {
 
@@ -235,11 +236,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let virtualProgress     = 0;
     let isLocked            = true;
     let autoScrollTriggered = false;
+    let isTransitioning     = false;
 
     window.addEventListener('scroll', () => {
       if (siteHeader) siteHeader.classList.toggle('nav--on-dark', window.scrollY < 50);
       if (window.scrollY === 0) {
-        virtualProgress = 0; isLocked = true; autoScrollTriggered = false;
+        virtualProgress = 0; isLocked = true; autoScrollTriggered = false; isTransitioning = false;
         ldLetterSpacing = -0.04; ldScale = 1;
         renderCanvas();
         if (landingScrollHint) landingScrollHint.classList.remove('hide');
@@ -247,6 +249,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const handleWheel = (e) => {
+      if (isTransitioning) {
+        if (e.cancelable) e.preventDefault();
+        return;
+      }
       if (window.scrollY > 50) { isLocked = false; return; }
       if (!isLocked) return;
 
@@ -274,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (virtualProgress >= 1 && !autoScrollTriggered) {
         autoScrollTriggered = true;
-        isLocked = false;
+        isTransitioning = true;
 
         const flash = document.querySelector('.landing-flash');
 
@@ -292,16 +298,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // ① 화이트 페이드인
         if (flash) flash.classList.add('in');
 
-        // ② 흰 화면 아래서 hero로 이동 + 콘텐츠 숨김 준비
+        // ② nav 원복 (흰 화면 뒤에서 미리 실행하여 레이아웃을 sticky 흐름으로 변경)
+        setTimeout(() => {
+          if (siteHeader) siteHeader.classList.remove('nav--on-dark');
+        }, 850);
+
+        // ③ 흰 화면 아래서 hero로 이동 + 콘텐츠 숨김 준비 (sticky 레이아웃 기준 정확한 위치로 스크롤)
         setTimeout(() => {
           heroSection.scrollIntoView({ behavior: 'instant' });
           heroSection.classList.add('wt-entering');
-        }, 900);
-
-        // ③ nav 원복
-        setTimeout(() => {
-          if (siteHeader) siteHeader.classList.remove('nav--on-dark');
-        }, 1000);
+        }, 950);
 
         // ④ 화이트 페이드아웃 (느리게) + hero 콘텐츠 등장
         setTimeout(() => {
@@ -317,6 +323,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           heroSection.classList.remove('wt-entering', 'wt-revealed');
           if (flash) flash.style.transition = '';
+          isTransitioning = false;
+          isLocked = false;
         }, 3000);
       }
     };
