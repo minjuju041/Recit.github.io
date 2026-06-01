@@ -249,6 +249,41 @@
     </div>
   </footer>
 
+  <!-- Added to Cart Popup Modal -->
+  <div id="cart-popup-overlay" class="cart-popup-overlay" aria-hidden="true">
+    <div class="cart-popup" role="dialog" aria-modal="true" aria-labelledby="cart-popup-title">
+      <div class="cart-popup-header">
+        <h2 id="cart-popup-title" class="cart-popup-title">Added to Cart!</h2>
+        <button class="cart-popup-close" aria-label="Close popup" id="cart-popup-close-btn">
+          <svg class="close-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.22 1.22a.75.75 0 0 1 1.06 0L8 6.94l5.72-5.72a.75.75 0 1 1 1.06 1.06L9.06 8l5.72 5.72a.75.75 0 1 1-1.06 1.06L8 9.06l-5.72 5.72a.75.75 0 0 1-1.06-1.06L6.94 8 1.22 2.28a.75.75 0 0 1 0-1.06z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+      
+      <hr class="cart-popup-divider">
+      
+      <div class="cart-popup-body">
+        <div class="cart-popup-product">
+          <div class="cart-popup-img-wrap">
+            <img src="assets/product_kit_main.jpg" alt="Récit Kit" id="cart-popup-prod-img">
+          </div>
+          <div class="cart-popup-details">
+            <h3 class="cart-popup-prod-name">Récit Kit</h3>
+            <p class="cart-popup-prod-price" id="cart-popup-prod-price">$185</p>
+          </div>
+        </div>
+      </div>
+      
+      <hr class="cart-popup-divider subtle">
+      
+      <div class="cart-popup-footer">
+        <button class="cart-popup-btn btn-buy-now">Buy Now</button>
+        <button class="cart-popup-btn btn-view-cart">View Cart</button>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
   <script src="product.js"></script>
 </body>
