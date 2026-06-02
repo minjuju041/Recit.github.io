@@ -384,4 +384,34 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('wheel',     handleWheel, { passive: false });
     window.addEventListener('touchmove', handleWheel, { passive: false });
   }
+
+  // --- Typewriter Effect for CTA ---
+  const ctaHeading = document.querySelector('.cta-heading');
+  if (ctaHeading) {
+    const text = ctaHeading.textContent;
+    ctaHeading.textContent = '';
+    const chars = Array.from(text).map(char => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.style.opacity = '0';
+      if (char === ' ') span.style.whiteSpace = 'pre';
+      ctaHeading.appendChild(span);
+      return span;
+    });
+
+    const typeWriterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          typeWriterObserver.unobserve(entry.target);
+          chars.forEach((span, index) => {
+            setTimeout(() => {
+              span.style.opacity = '1';
+            }, index * 70);
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    typeWriterObserver.observe(ctaHeading);
+  }
 });
