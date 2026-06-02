@@ -215,7 +215,8 @@
   grid-column: 1;
 }
 
-.pd-step-img-wrap img {
+.pd-step-img-wrap img,
+.pd-step-img-wrap video {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
@@ -307,7 +308,8 @@
   overflow: hidden;
 }
 
-.pd-step-02-img img {
+.pd-step-02-img img,
+.pd-step-02-img video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -330,7 +332,8 @@
   overflow: hidden;
 }
 
-.pd-step-03-img img {
+.pd-step-03-img img,
+.pd-step-03-img video {
   width: 100%;
   height: 100%;
   object-fit: cover;
