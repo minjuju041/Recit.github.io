@@ -495,14 +495,61 @@
 .pd-immersive-card {
   position: relative;
   z-index: 2;
+  max-width: 640px;
+  width: 100%;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.pd-immersive-card-inner {
+  position: relative;
+  width: 100%;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  display: grid;
+}
+
+.pd-immersive-card.flipped .pd-immersive-card-inner {
+  transform: rotateY(180deg);
+}
+
+.pd-immersive-card-front,
+.pd-immersive-card-back {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid #f5f5f5;
   padding: 96px;
-  max-width: 640px;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+.pd-immersive-card-front {
+  align-items: center;
+}
+
+.pd-immersive-logo {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--color-text-primary);
+  margin-bottom: 24px;
+}
+
+.pd-immersive-hint {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+}
+
+.pd-immersive-card-back {
   gap: 48px;
+  transform: rotateY(180deg);
 }
 
 .pd-immersive-quote {
