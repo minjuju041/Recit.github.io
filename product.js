@@ -52,6 +52,14 @@ const initCartPopup = () => {
     const totalPrice = qty * 185;
     priceDisplay.textContent = `$${totalPrice}`;
 
+    // Prevent layout shift (scrollbar width)
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      const header = document.querySelector('.site-header');
+      if (header) header.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
     // Open popup
     overlay.classList.add('active');
     overlay.setAttribute('aria-hidden', 'false');
@@ -61,7 +69,12 @@ const initCartPopup = () => {
   const closeCartPopup = () => {
     overlay.classList.remove('active');
     overlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = ''; // Restore body scrolling
+    
+    // Restore body scrolling and padding
+    document.body.style.overflow = ''; 
+    document.body.style.paddingRight = '';
+    const header = document.querySelector('.site-header');
+    if (header) header.style.paddingRight = '';
   };
 
   // Event Delegation for the Buy Button
