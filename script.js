@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       if (siteHeader && !autoScrollTriggered) {
-        siteHeader.classList.toggle('nav--on-dark', window.scrollY < 50);
+        siteHeader.classList.toggle('nav--on-dark', window.scrollY < window.innerHeight - 80);
       } else if (siteHeader && window.scrollY === 0) {
         // Force it on if we're at the very top, even if it was an auto-scroll
         siteHeader.classList.add('nav--on-dark');
