@@ -274,14 +274,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── 스크롤 애니메이션 ──────────────────────────────────────────
     window.addEventListener('scroll', () => {
-      if (siteHeader && !autoScrollTriggered) {
-        siteHeader.classList.toggle('nav--on-dark', window.scrollY < 50);
-      }
       if (window.scrollY === 0) {
         virtualProgress = 0; isLocked = true; autoScrollTriggered = false; isTransitioning = false;
         ldLetterSpacing = -0.04; ldScale = 1;
         renderCanvas();
         if (landingScrollHint) landingScrollHint.classList.remove('hide');
+      }
+      
+      if (siteHeader && !autoScrollTriggered) {
+        siteHeader.classList.toggle('nav--on-dark', window.scrollY < 50);
+      } else if (siteHeader && window.scrollY === 0) {
+        // Force it on if we're at the very top, even if it was an auto-scroll
+        siteHeader.classList.add('nav--on-dark');
       }
     });
 
