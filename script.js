@@ -267,6 +267,12 @@ document.addEventListener('DOMContentLoaded', () => {
       renderCanvas();
     });
 
+    // 브라우저 스크롤 복원 방지 및 최상단 강제 고정
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => { calcFontSize(); renderCanvas(); }, 80);
