@@ -127,6 +127,12 @@
     color: #ffffff;
   }
 
+  .site-header nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   .nav-right {
     display: flex;
     gap: 32px;
