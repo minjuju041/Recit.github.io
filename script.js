@@ -215,9 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if ('letterSpacing' in ctx) {
         ctx.letterSpacing = `${ldLetterSpacing * fontSize}px`;
         ctx.textAlign = 'center';
-        ctx.fillText(BRAND, ldW / 2, (ldH / 2) + 8);
+        ctx.fillText(BRAND, ldW / 2, ldH / 2);
       } else {
-        drawTextWithSpacing(ctx, BRAND, ldW / 2, (ldH / 2) + 8, fontSize, ldLetterSpacing * fontSize);
+        drawTextWithSpacing(ctx, BRAND, ldW / 2, ldH / 2, fontSize, ldLetterSpacing * fontSize);
       }
 
       ctx.restore();
