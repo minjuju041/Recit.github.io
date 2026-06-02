@@ -276,10 +276,13 @@
 }
 
 .pd-step-02-text {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-width: 200px;
+  max-width: 280px;
   flex-shrink: 0;
 }
 
@@ -335,6 +338,9 @@
 }
 
 .pd-step-03-text {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  padding: 40px 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
