@@ -134,7 +134,7 @@
 
   /* Landing Section & Container */
   .landing-container {
-    height: 100vh;
+    height: calc(100vh + 80px);
     position: relative;
     margin-top: -80px;
     background: #000;
