@@ -414,4 +414,47 @@ document.addEventListener('DOMContentLoaded', () => {
     
     typeWriterObserver.observe(ctaHeading);
   }
+  // --- Custom Ring Cursor ---
+  const cursor = document.createElement('div');
+  cursor.className = 'custom-cursor';
+  const cursorInner = document.createElement('div');
+  cursorInner.className = 'custom-cursor-inner';
+  cursor.appendChild(cursorInner);
+  document.body.appendChild(cursor);
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let cursorX = window.innerWidth / 2;
+  let cursorY = window.innerHeight / 2;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animateCursor() {
+    cursorX += (mouseX - cursorX) * 0.2;
+    cursorY += (mouseY - cursorY) * 0.2;
+    cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  const updateHoverElements = () => {
+    const clickables = document.querySelectorAll('a, button, .pd-immersive-card, input, textarea, select');
+    clickables.forEach(el => {
+      el.removeEventListener('mouseenter', addHoverState);
+      el.removeEventListener('mouseleave', removeHoverState);
+      el.addEventListener('mouseenter', addHoverState);
+      el.addEventListener('mouseleave', removeHoverState);
+    });
+  };
+
+  const addHoverState = () => cursor.classList.add('hover');
+  const removeHoverState = () => cursor.classList.remove('hover');
+
+  updateHoverElements();
+  const observer = new MutationObserver(updateHoverElements);
+  observer.observe(document.body, { childList: true, subtree: true });
+
 });

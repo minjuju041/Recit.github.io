@@ -88,6 +88,36 @@
   }
 }
 
+/* Custom Cursor */
+* {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor-inner {
+  position: absolute;
+  top: -16px;
+  left: -16px;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease;
+}
+
+.custom-cursor.hover .custom-cursor-inner {
+  transform: scale(1.5);
+  background-color: #fff;
+}
+
 @layer layout {
   /* Site Header */
   .site-header {
