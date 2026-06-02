@@ -559,8 +559,18 @@
     color: var(--color-text-primary);
   }
 
-  .nav-link:hover::after, .nav-link.active::after {
+  @keyframes activeLinkGrow {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+
+  .nav-link:hover::after {
     width: 100%;
+  }
+  
+  .nav-link.active::after {
+    width: 100%;
+    animation: activeLinkGrow 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   }
 
 
