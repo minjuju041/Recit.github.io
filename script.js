@@ -215,9 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if ('letterSpacing' in ctx) {
         ctx.letterSpacing = `${ldLetterSpacing * fontSize}px`;
         ctx.textAlign = 'center';
-        ctx.fillText(BRAND, ldW / 2, ldH / 2);
+        ctx.fillText(BRAND, ldW / 2, (ldH / 2) + 8);
       } else {
-        drawTextWithSpacing(ctx, BRAND, ldW / 2, ldH / 2, fontSize, ldLetterSpacing * fontSize);
+        drawTextWithSpacing(ctx, BRAND, ldW / 2, (ldH / 2) + 8, fontSize, ldLetterSpacing * fontSize);
       }
 
       ctx.restore();
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       if (siteHeader && !autoScrollTriggered) {
-        siteHeader.classList.toggle('nav--on-dark', window.scrollY < 50);
+        siteHeader.classList.toggle('nav--on-dark', window.scrollY < window.innerHeight - 80);
       } else if (siteHeader && window.scrollY === 0) {
         // Force it on if we're at the very top, even if it was an auto-scroll
         siteHeader.classList.add('nav--on-dark');
@@ -366,6 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (flash) flash.style.transition = '';
           isTransitioning = false;
           isLocked = false;
+          autoScrollTriggered = false; // Add this line so normal scroll works again
         }, 3000);
       }
     };
