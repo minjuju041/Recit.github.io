@@ -696,7 +696,7 @@
 
   .gallery-item-title {
     font-family: var(--font-heading);
-    font-size: 11px;
+    font-size: 16px;
     font-weight: 500;
     font-style: italic;
     color: var(--color-text-secondary);
