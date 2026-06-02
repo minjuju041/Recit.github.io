@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el.classList.add('pd-reveal');
     revealObs.observe(el);
   });
+});
 
 // Added to Cart Popup Logic (Robust Initialization)
 const initCartPopup = () => {
@@ -115,4 +116,3 @@ if (document.readyState === 'loading') {
 } else {
   initCartPopup();
 }
-
