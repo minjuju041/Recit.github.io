@@ -138,6 +138,7 @@
     position: relative;
     margin-top: -80px;
     background: #000;
+    scroll-snap-align: start;
   }
 
   .landing-section {
@@ -185,6 +186,7 @@
     position: relative;
     background: var(--color-bg-primary);
     overflow: hidden;
+    scroll-snap-align: start;
   }
 
   .hero-left {
