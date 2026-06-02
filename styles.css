@@ -497,7 +497,7 @@
   /* Navigation Links */
   .nav-menu {
     display: flex;
-    gap: 64px;
+    gap: 32px;
     align-items: center;
     list-style: none;
   }
