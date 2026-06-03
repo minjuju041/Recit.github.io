@@ -658,14 +658,16 @@
     position: relative;
   }
 
-  .intro-image-wrapper img {
+  .intro-image-wrapper img,
+  .intro-image-wrapper video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-smooth);
   }
 
-  .intro-image-wrapper:hover img {
+  .intro-image-wrapper:hover img,
+  .intro-image-wrapper:hover video {
     transform: scale(1.03);
   }
 
