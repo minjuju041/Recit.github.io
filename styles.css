@@ -666,6 +666,10 @@
     transition: transform var(--transition-smooth);
   }
 
+  .intro-image-wrapper video {
+    filter: saturate(0.35) brightness(0.9) contrast(1.05);
+  }
+
   .intro-image-wrapper:hover img,
   .intro-image-wrapper:hover video {
     transform: scale(1.03);
