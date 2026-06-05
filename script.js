@@ -131,8 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const revealElements = [
     ...document.querySelectorAll('.intro-col-text'),
     ...document.querySelectorAll('.intro-col-image'),
-    ...document.querySelectorAll('.gallery-header'),
-    ...document.querySelectorAll('.gallery-item'),
+    ...document.querySelectorAll('.narrative-preview'),
     ...document.querySelectorAll('.process-row'),
     ...document.querySelectorAll('.cta-section'),
     ...document.querySelectorAll('.quote-container')
@@ -142,6 +141,86 @@ document.addEventListener('DOMContentLoaded', () => {
     el.classList.add('reveal');
     revealObserver.observe(el);
   });
+
+  // --- Gallery: dfyint-style Interactive Parallax & Background Typography Scroll ---
+  const galleryContainer = document.querySelector('.gallery-scroll-container');
+  const projectCards     = document.querySelectorAll('.gallery-project-card');
+  const bgTextWrappers   = document.querySelectorAll('.gallery-bg-text-wrapper');
+
+  function updateGalleryParallax() {
+    if (!galleryContainer) return;
+
+    const rect = galleryContainer.getBoundingClientRect();
+    const viewH = window.innerHeight;
+    const containerH = galleryContainer.offsetHeight;
+
+    // 1. Calculate overall scroll progress of the gallery section
+    // Starts when container top enters viewport (rect.top <= viewH)
+    // Ends when container bottom leaves viewport (rect.bottom <= 0)
+    const startOffset = viewH;
+    const totalScrollRange = containerH + viewH;
+    const scrolled = startOffset - rect.top;
+    const progress = Math.min(1, Math.max(0, scrolled / totalScrollRange)); // 0 → 1
+
+    // 2. Translate bg rows horizontally based on progress
+    bgTextWrappers.forEach(wrapper => {
+      const row1 = wrapper.querySelector('.bg-row-1');
+      const row2 = wrapper.querySelector('.bg-row-2');
+      if (row1) {
+        // Slide Row 1 left
+        const shiftX1 = 5 - progress * 40;
+        row1.style.transform = `translateX(${shiftX1}vw)`;
+      }
+      if (row2) {
+        // Slide Row 2 right
+        const shiftX2 = -35 + progress * 40;
+        row2.style.transform = `translateX(${shiftX2}vw)`;
+      }
+    });
+
+    // 3. Determine the active project based on card center distance from viewport center
+    let activeIndex = 0;
+    let minDistance = Infinity;
+    const viewportCenter = viewH / 2;
+
+    projectCards.forEach((card, index) => {
+      const cardRect = card.getBoundingClientRect();
+      const cardCenter = cardRect.top + cardRect.height / 2;
+      const distance = Math.abs(cardCenter - viewportCenter);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        activeIndex = index;
+      }
+
+      // 4. Parallax effect inside individual card image wrapper
+      // 0 when card top enters viewport, 1 when card bottom leaves
+      const cardVisibleProgress = (viewH - cardRect.top) / (viewH + cardRect.height);
+      const clampedCardProgress = Math.min(1, Math.max(0, cardVisibleProgress));
+      
+      const img = card.querySelector('.card-img-wrap img');
+      if (img) {
+        // Move image inside its wrap (top is styled at -10%, we translate from -10% to 10%)
+        const yOffset = -8 + clampedCardProgress * 16; 
+        img.style.transform = `translateY(${yOffset}%)`;
+      }
+    });
+
+    // 5. Update active class on text wrappers to trigger fade transitions
+    bgTextWrappers.forEach((wrapper, index) => {
+      if (index === activeIndex) {
+        wrapper.classList.add('active');
+      } else {
+        wrapper.classList.remove('active');
+      }
+    });
+  }
+
+  if (galleryContainer) {
+    window.addEventListener('scroll', updateGalleryParallax, { passive: true });
+    window.addEventListener('resize', updateGalleryParallax, { passive: true });
+    updateGalleryParallax();
+  }
 
 
   // ══════════════════════════════════════════════════════════════════
@@ -414,6 +493,86 @@ document.addEventListener('DOMContentLoaded', () => {
     
     typeWriterObserver.observe(ctaHeading);
   }
+
+  // --- Play/Pause Videos on Intersection ---
+  const videoObserverOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        // narrative-preview-video: active인 것만 재생
+        if (video.classList.contains('narrative-preview-video')) {
+          if (video.classList.contains('active')) {
+            video.play().catch(() => {});
+          }
+        } else {
+          video.play().catch(() => {});
+        }
+      } else {
+        video.pause();
+      }
+    });
+  }, videoObserverOptions);
+
+  document.querySelectorAll('video').forEach(video => {
+    videoObserver.observe(video);
+  });
+
+  // --- Narrative Video Slideshow (5초마다 다음 영상으로 크로스페이드) ---
+  const narrativeVideos = document.querySelectorAll('.narrative-preview-video');
+  if (narrativeVideos.length > 0) {
+    let currentNarrativeIdx = 0;
+    let narrativeTimer = null;
+
+    function switchNarrativeVideo() {
+      const current = narrativeVideos[currentNarrativeIdx];
+      const nextIdx = (currentNarrativeIdx + 1) % narrativeVideos.length;
+      const next    = narrativeVideos[nextIdx];
+
+      // 다음 영상 준비 & 재생
+      next.currentTime = 0;
+      next.play().catch(() => {});
+
+      // 즉시 전환 (트랜지션 없음)
+      next.classList.add('active');
+      current.classList.remove('active');
+      current.pause();
+
+      currentNarrativeIdx = nextIdx;
+    }
+
+    function startNarrativeSlideshow() {
+      if (narrativeTimer) return;
+      narrativeTimer = setInterval(switchNarrativeVideo, 5000);
+    }
+
+    function stopNarrativeSlideshow() {
+      clearInterval(narrativeTimer);
+      narrativeTimer = null;
+    }
+
+    // 섹션 가시성에 따라 타이머 시작/정지
+    const narrativeWrapper = document.querySelector('.narrative-video-wrapper');
+    if (narrativeWrapper) {
+      const slideshowObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            startNarrativeSlideshow();
+          } else {
+            stopNarrativeSlideshow();
+          }
+        });
+      }, { threshold: 0.1 });
+      slideshowObserver.observe(narrativeWrapper);
+    }
+  }
+
+
   // --- Custom Ring Cursor ---
   const cursor = document.createElement('div');
   cursor.className = 'custom-cursor';

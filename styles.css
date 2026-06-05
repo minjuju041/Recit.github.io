@@ -295,11 +295,208 @@
   }
 
   .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
     width: 100%;
   }
+
+  /* ── Gallery: dfyint-style Sticky Typography & Scrolling Cards ───────── */
+  .gallery-scroll-container {
+    position: relative;
+    width: 100%;
+    background: var(--color-bg-primary);
+  }
+
+  /* Sticky Background Wrapper */
+  .gallery-bg-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: var(--color-bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  /* Project Background Typography Wrapper (Overlaying each other) */
+  .gallery-bg-text-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+    pointer-events: none;
+    z-index: 1;
+    padding: 0 4vw;
+  }
+
+  .gallery-bg-text-wrapper.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Giant text rows */
+  .bg-row {
+    font-family: var(--font-heading);
+    font-size: clamp(65px, 12.5vw, 190px);
+    font-weight: 800;
+    font-style: italic;
+    text-transform: uppercase;
+    white-space: nowrap;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    will-change: transform;
+    display: flex;
+  }
+
+  .bg-row-1 {
+    color: var(--color-text-primary);
+    justify-content: flex-start;
+  }
+
+  .bg-row-2 {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-text-primary);
+    justify-content: flex-start;
+  }
+
+  /* Sticky top-left label */
+  .gallery-recent-label {
+    position: absolute;
+    top: 64px;
+    left: 64px;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    z-index: 2;
+  }
+
+  /* Scrolling Content (overlaying sticky background) */
+  .gallery-scroll-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-top: -100vh; /* pull content up over sticky bg */
+  }
+
+  /* Vertical Timeline Project Cards */
+  .gallery-project-card {
+    height: 120vh;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 8vw;
+    position: relative;
+  }
+
+  .gallery-project-card:first-child {
+    margin-top: 100vh;
+  }
+
+  .gallery-project-card:last-child {
+    padding-bottom: 20vh;
+  }
+
+  /* Card offsets */
+  .gallery-project-card.card-right {
+    justify-content: flex-end;
+  }
+
+  .gallery-project-card.card-left {
+    justify-content: flex-start;
+  }
+
+  .gallery-project-card.card-center {
+    justify-content: center;
+  }
+
+  /* Card block dimensions */
+  .card-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+  }
+
+  .card-right .card-inner {
+    width: clamp(280px, 32vw, 480px);
+    aspect-ratio: 3 / 4;
+  }
+
+  .card-left .card-inner {
+    width: clamp(280px, 30vw, 450px);
+    aspect-ratio: 3 / 4;
+  }
+
+  .card-center .card-inner {
+    width: clamp(280px, 34vw, 520px);
+    aspect-ratio: 3 / 4;
+  }
+
+  /* Card Elements */
+  .card-num {
+    position: absolute;
+    top: -28px;
+    left: 0;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--color-text-secondary);
+  }
+
+  .card-img-wrap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--color-bg-overlay);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .card-img-wrap img {
+    width: 100%;
+    height: 120%; /* extra height for scroll parallax inside */
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: -10%;
+    left: 0;
+    will-change: transform;
+    transition: transform 0.15s cubic-bezier(0.1, 0.9, 0.2, 1);
+  }
+
+  .card-footer {
+    position: absolute;
+    bottom: -28px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--color-text-secondary);
+  }
+
+  .card-title {
+    text-transform: uppercase;
+  }
+
+  .card-year {
+    color: var(--color-text-secondary);
+  }
+
 
   /* Process Section */
   .process-section {
@@ -675,30 +872,72 @@
     transform: scale(1.03);
   }
 
-  /* Narrative Title Block */
-  .gallery-header {
+  /* Narrative Preview Banner (Image Reference Layout) */
+  .narrative-preview {
     display: flex;
-    gap: 40px;
-    align-items: baseline;
+    flex-direction: column;
     width: 100%;
+    margin-bottom: 80px;
   }
 
-  .gallery-title {
-    font-family: var(--font-heading);
-    font-size: clamp(48px, 6.5vw, 84px);
+  .narrative-video-wrapper {
+    width: 100%;
+    aspect-ratio: 21 / 9; /* Cinematic wide aspect ratio */
+    overflow: hidden;
+    position: relative;
+    background: var(--color-bg-secondary);
+  }
+
+
+  /* Narrative preview videos — real footage with low-saturation cinematic grade */
+  .narrative-preview-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 100%; /* 모든 영상 하단 정렬 */
+    display: block;
+    opacity: 0;
+    filter: saturate(0.35);
+
+  }
+
+  .narrative-preview-video.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+
+
+  .narrative-text-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 24px;
+    position: relative;
+  }
+
+  .narrative-tagline {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: 12px; /* Align nicely with the baseline of the huge title */
+  }
+
+  .narrative-large-title {
+    font-family: var(--font-heading); /* Cormorant Garamond */
+    font-size: clamp(60px, 12vw, 200px);
     font-weight: 600;
     font-style: italic;
-    line-height: 1;
+    line-height: 0.8;
     color: var(--color-text-primary);
-  }
-
-  .gallery-subtitle {
-    font-family: var(--font-heading);
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 1.1px;
+    margin: 0;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
-    color: var(--color-text-primary);
   }
 
   /* Gallery Grid Staggering */
@@ -1055,10 +1294,19 @@
       gap: 48px;
     }
 
-    .gallery-header {
+    .narrative-text-row {
       flex-direction: column;
       gap: 16px;
       align-items: flex-start;
+    }
+
+    .narrative-tagline {
+      margin-bottom: 0;
+    }
+
+    .narrative-large-title {
+      font-size: clamp(48px, 12vw, 80px);
+      align-self: flex-end;
     }
 
     .gallery-grid {

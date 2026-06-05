@@ -106,38 +106,90 @@
 
     <!-- Narrative Gallery Section -->
     <section class="gallery-section" id="narrative">
-      <div class="gallery-header">
-        <h2 class="gallery-title">NARRATIVE</h2>
-        <span class="gallery-subtitle">Recording the traveler's experience</span>
+      
+      <!-- Narrative Preview Banner (based on image reference) -->
+      <div class="narrative-preview">
+        <div class="narrative-video-wrapper">
+          <video class="narrative-preview-video active" autoplay muted playsinline loop preload="none"
+                 src="assets/narrative_video_1.mp4"
+                 style="object-position: 25% 68%;"></video>
+
+          <video class="narrative-preview-video" muted playsinline preload="none"
+                 src="assets/narrative_video_2.mp4"></video>
+          <video class="narrative-preview-video" muted playsinline preload="none"
+                 src="assets/narrative_video_3.mp4"></video>
+          <video class="narrative-preview-video" muted playsinline preload="none"
+                 src="assets/narrative_video_4.mp4"
+                 style="object-position: 50% 85%;"></video>
+          <video class="narrative-preview-video" muted playsinline preload="none"
+                 src="assets/narrative_video_5.mp4"
+                 style="object-position: 50% 50%;"></video>
+        </div>
+        <div class="narrative-text-row">
+          <span class="narrative-tagline">A LITTLE PREVIEW OF WHAT WE CAN DO</span>
+          <h2 class="narrative-large-title">NARRATIVE.</h2>
+        </div>
       </div>
 
-      <div class="gallery-grid">
-        <!-- Item 01 -->
-        <article class="gallery-item gallery-item-1">
-          <div class="gallery-img-wrapper">
-            <img src="assets/vintage_camera.jpg"
-              alt="Vintage analog film camera bathed in warm amber light against a dark background" loading="lazy">
+      <div class="gallery-scroll-container">
+        <!-- Sticky Background for Giant Text -->
+        <div class="gallery-bg-sticky">
+          <div class="gallery-bg-text-wrapper active" data-project="1">
+            <div class="bg-row bg-row-1">THE ESSENCE THE ESSENCE THE ESSENCE THE ESSENCE THE ESSENCE</div>
+            <div class="bg-row bg-row-2">OF ANALOG OF ANALOG OF ANALOG OF ANALOG OF ANALOG</div>
           </div>
-          <h3 class="gallery-item-title">01. The Essence of Analog</h3>
-        </article>
+          <div class="gallery-bg-text-wrapper" data-project="2">
+            <div class="bg-row bg-row-1">FLUIDITY FLUIDITY FLUIDITY FLUIDITY FLUIDITY</div>
+            <div class="bg-row bg-row-2">OF TIME OF TIME OF TIME OF TIME OF TIME</div>
+          </div>
+          <div class="gallery-bg-text-wrapper" data-project="3">
+            <div class="bg-row bg-row-1">DELAYED DELAYED DELAYED DELAYED DELAYED</div>
+            <div class="bg-row bg-row-2">REUNION REUNION REUNION REUNION REUNION</div>
+          </div>
+          <div class="gallery-recent-label">RECENT PROJECTS</div>
+        </div>
 
-        <!-- Item 02 -->
-        <article class="gallery-item gallery-item-2">
-          <div class="gallery-img-wrapper">
-            <img src="assets/ocean_waves.jpg"
-              alt="Ocean waves at dusk with deep blue water and a soft pink sunset horizon" loading="lazy">
+        <!-- Vertical Scroll Content -->
+        <div class="gallery-scroll-content">
+          <!-- Card 1 -->
+          <div class="gallery-project-card card-right" data-project="1">
+            <div class="card-inner">
+              <span class="card-num">N°0001</span>
+              <div class="card-img-wrap">
+                <img src="assets/vintage_camera.jpg" alt="Vintage analog film camera" loading="lazy">
+              </div>
+              <div class="card-footer">
+                <span class="card-title">THE ESSENCE OF ANALOG</span>
+              </div>
+            </div>
           </div>
-          <h3 class="gallery-item-title">02. Fluidity of Time</h3>
-        </article>
 
-        <!-- Item 03 -->
-        <article class="gallery-item gallery-item-3">
-          <div class="gallery-img-wrapper">
-            <img src="assets/solitary_tree.jpg"
-              alt="Dark misty pine forest with sunbeams piercing through fog and muted green tones" loading="lazy">
+          <!-- Card 2 -->
+          <div class="gallery-project-card card-left" data-project="2">
+            <div class="card-inner">
+              <span class="card-num">N°0002</span>
+              <div class="card-img-wrap">
+                <img src="assets/ocean_waves.jpg" alt="Ocean waves at dusk" loading="lazy">
+              </div>
+              <div class="card-footer">
+                <span class="card-title">FLUIDITY OF TIME</span>
+              </div>
+            </div>
           </div>
-          <h3 class="gallery-item-title">03. Delayed reunion</h3>
-        </article>
+
+          <!-- Card 3 -->
+          <div class="gallery-project-card card-center" data-project="3">
+            <div class="card-inner">
+              <span class="card-num">N°0003</span>
+              <div class="card-img-wrap">
+                <img src="assets/solitary_tree.jpg" alt="Misty pine forest" loading="lazy">
+              </div>
+              <div class="card-footer">
+                <span class="card-title">DELAYED REUNION</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -274,7 +326,8 @@
   </footer>
 
   <!-- Interactive Logic -->
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
+
 </body>
 
 </html>
