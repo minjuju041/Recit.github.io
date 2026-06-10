@@ -1051,6 +1051,12 @@ body.has-custom-cursor * {
     letter-spacing: 0.5px;
   }
 
+  .process-step-num {
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
   .process-step-title {
     font-family: var(--font-heading);
     font-size: 46px;

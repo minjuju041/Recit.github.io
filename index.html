@@ -12,13 +12,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Load Fonts: Cormorant Garamond, Bodoni Moda (watermark), Hanken Grotesk -->
+  <!-- Load Fonts: Cormorant Garamond, Cormorant Infant, Bodoni Moda, Hanken Grotesk -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500;1,6..96,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500;1,6..96,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant+Infant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 
 <body>
@@ -194,64 +194,52 @@
         <h2 class="process-title">How It Works</h2>
       </div>
 
-      <!-- Scroll track: 300vh so each of 3 steps occupies one viewport height -->
-      <div class="process-scroll-track">
-      <!-- Spotlight Showcase (Moon Safari-style: dark background + cursor spotlight) -->
-      <div class="process-spotlight" id="processSpotlight">
-
-        <!-- Background images (heavily dimmed) -->
-        <div class="ps-bg-layer">
-          <img src="assets/open_book.jpg"       class="ps-bg-img" data-step="0" alt="" loading="lazy">
-          <img src="assets/magnifying_glass.jpg" class="ps-bg-img" data-step="1" alt="" loading="lazy">
-          <img src="assets/luxury_box.jpg"       class="ps-bg-img" data-step="2" alt="" loading="lazy">
-        </div>
-
-        <!-- Spotlight reveal layer (same images, full colour, clipped to cursor circle) -->
-        <div class="ps-reveal-layer" id="psRevealLayer">
-          <img src="assets/open_book.jpg"       class="ps-reveal-img" data-step="0" alt="" loading="lazy">
-          <img src="assets/magnifying_glass.jpg" class="ps-reveal-img" data-step="1" alt="" loading="lazy">
-          <img src="assets/luxury_box.jpg"       class="ps-reveal-img" data-step="2" alt="" loading="lazy">
-        </div>
-
-        <!-- Sweep animation line: rotates 360° from centre when a step activates -->
-        <div class="ps-sweep-line" id="psSweepLine" aria-hidden="true"></div>
-
-        <!-- SVG: thin dashed line from bottom-left corner to cursor -->
-        <svg class="ps-svg" aria-hidden="true">
-          <line class="ps-line" id="psLine" x1="48" y1="100%" x2="-200" y2="-200"/>
-          <circle class="ps-dot"  id="psDot"  cx="-200" cy="-200" r="3"/>
-        </svg>
-
-        <!-- Right ticker column: slides vertically so active item is at panel centre -->
-        <div class="ps-text-col">
-          <div class="ps-ticker" id="psTicker">
-            <div class="ps-text-item active" data-step="0">
-              <span class="ps-step-num">STEP 01</span>
-              <h3 class="ps-step-title">Directing</h3>
-              <p class="ps-step-desc">Arrive, and frame your first scene.</p>
-            </div>
-            <div class="ps-text-item" data-step="1">
-              <span class="ps-step-num">STEP 02</span>
-              <h3 class="ps-step-title">Immersion</h3>
-              <p class="ps-step-desc">Sink into the moment with every sense.</p>
-            </div>
-            <div class="ps-text-item" data-step="2">
-              <span class="ps-step-num">STEP 03</span>
-              <h3 class="ps-step-title">Sealing</h3>
-              <p class="ps-step-desc">Seal it away, and meet it again in a year.</p>
-            </div>
+      <div class="process-rows">
+        <!-- Step 1 -->
+        <div class="process-row">
+          <div class="process-image-wrapper">
+            <img src="assets/open_book.jpg"
+              alt="Cinematic mountain sunset with amber light over misty valleys and dramatic sky" loading="lazy">
+          </div>
+          <div class="process-text">
+            <span class="process-step">STEP <span class="process-step-num">01</span></span>
+            <h3 class="process-step-title">Directing</h3>
+            <p class="process-step-desc">
+              Arrive, and frame your first scene.
+            </p>
           </div>
         </div>
 
-        <!-- Bottom-left step counter -->
-        <div class="ps-counter" aria-hidden="true">
-          <span class="ps-counter-cur">01</span>
-          <span class="ps-counter-sep"> · </span>
-          <span class="ps-counter-total">03</span>
+        <!-- Step 2 (Reversed / Right-Aligned) -->
+        <div class="process-row reversed">
+          <div class="process-image-wrapper">
+            <img src="assets/magnifying_glass.jpg"
+              alt="Film strips on a light table with camera lenses representing the curation process" loading="lazy">
+          </div>
+          <div class="process-text">
+            <span class="process-step">STEP <span class="process-step-num">02</span></span>
+            <h3 class="process-step-title">Immersion</h3>
+            <p class="process-step-desc">
+              Sink into the moment with every sense.
+            </p>
+          </div>
         </div>
 
+        <!-- Step 3 -->
+        <div class="process-row">
+          <div class="process-image-wrapper">
+            <img src="assets/luxury_box.jpg"
+              alt="Professional filmmaker studio with CONTAX cameras, lenses and editing monitors" loading="lazy">
+          </div>
+          <div class="process-text">
+            <span class="process-step">STEP <span class="process-step-num">03</span></span>
+            <h3 class="process-step-title">Sealing</h3>
+            <p class="process-step-desc">
+              Seal it away, and meet it again in a year.
+            </p>
+          </div>
+        </div>
       </div>
-      </div><!-- /.process-scroll-track -->
     </section>
 
     <!-- CTA Section -->
@@ -312,7 +300,7 @@
   </footer>
 
   <!-- Interactive Logic -->
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=6"></script>
 
 </body>
 
