@@ -731,27 +731,25 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Determine active step from current scroll position
+    // Determine active step; trigger entry sweep when section first reaches viewport
     function psOnScroll() {
-      if (!psVisible) return;
       const rect    = processScrollTrack.getBoundingClientRect();
-      const scrolled = -rect.top;
+
+      // Trigger step 0 sweep as soon as section top enters the viewport
+      if (!psVisible && rect.top < window.innerHeight * 0.9) {
+        psVisible = true;
+        psSetStep(0);
+      }
+
+      if (!psVisible) return;
+
+      const scrolled = Math.max(0, -rect.top);
       const stepH   = window.innerHeight;
       const idx     = Math.max(0, Math.min(TOTAL_STEPS - 1, Math.floor(scrolled / stepH)));
       psSetStep(idx);
     }
 
     window.addEventListener('scroll', psOnScroll, { passive: true });
-
-    // Activate on first viewport entry — triggers the conic sweep for step 0
-    const entryObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        psVisible = true;
-        psOnScroll();
-        entryObserver.disconnect();
-      }
-    }, { threshold: 0.05 });
-    entryObserver.observe(processScrollTrack);
 
     // Initial ticker layout (text item 0 has .active in HTML for size reference)
     requestAnimationFrame(() => requestAnimationFrame(() => updateTicker(0)));
