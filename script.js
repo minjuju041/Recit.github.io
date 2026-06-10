@@ -178,11 +178,30 @@ document.addEventListener('DOMContentLoaded', () => {
     ...document.querySelectorAll('.narrative-preview'),
     // process-spotlight excluded — it uses scroll-driven sticky, not reveal animation
     ...document.querySelectorAll('.cta-section'),
-    ...document.querySelectorAll('.quote-container')
+    ...document.querySelectorAll('.quote-container'),
+    ...document.querySelectorAll('.tp-quote-inner')
   ];
 
   revealElements.forEach(el => {
     el.classList.add('reveal');
+    revealObserver.observe(el);
+  });
+
+  const revealLeftElements = [
+    ...document.querySelectorAll('#minju .tp-profile-text'),
+    ...document.querySelectorAll('#minju .tp-profile-img-wrapper')
+  ];
+  revealLeftElements.forEach(el => {
+    el.classList.add('reveal-left');
+    revealObserver.observe(el);
+  });
+
+  const revealRightElements = [
+    ...document.querySelectorAll('#kyungjae .tp-profile-text'),
+    ...document.querySelectorAll('#kyungjae .tp-profile-img-wrapper')
+  ];
+  revealRightElements.forEach(el => {
+    el.classList.add('reveal-right');
     revealObserver.observe(el);
   });
 
