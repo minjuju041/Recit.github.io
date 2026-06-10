@@ -276,49 +276,108 @@ body.has-custom-cursor * {
 
   /* Intro Feature Section */
   .intro-section {
-    position: relative;
-    display: flex;
-    padding: 128px 64px;
-    min-height: 800px;
-    align-items: center;
-    justify-content: center;
+    padding: 0;
     overflow: hidden;
   }
 
-  .intro-col-label {
-    width: 40px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-bottom: 32px;
+  .intro-scroll-track {
+    height: 300vh;
+    position: relative;
   }
 
-  .intro-col-text {
-    position: relative;
+  .intro-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
+
+  /* Video layer */
+  .intro-video-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform-origin: center center;
+    will-change: transform;
+    filter: saturate(0.25) brightness(0.85) contrast(1.05);
+  }
+
+  .intro-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    will-change: opacity;
+  }
+
+  /* Text layer */
+  .intro-content {
+    position: absolute;
+    inset: 0;
     z-index: 3;
-    max-width: 800px;
-    text-align: center;
-    color: #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 24px;
+    justify-content: center;
+    text-align: center;
+    padding: 0 64px;
+    color: #fff;
+    gap: 28px;
   }
 
   .intro-heading {
     font-family: var(--font-heading);
-    font-size: clamp(36px, 4vw, 48px);
+    font-size: clamp(48px, 6.5vw, 100px);
     font-weight: 500;
+    font-style: italic;
+    line-height: 1.1;
   }
 
-  .intro-col-image {
-    position: absolute;
-    top: 100px;
-    left: 100px;
-    width: calc(100% - 200px);
-    height: calc(100% - 200px);
-    z-index: 1;
+  /* Lines slide in from opposite sides */
+  .intro-line {
+    display: block;
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity  0.9s ease;
+  }
+  .intro-line[data-dir="left"]  { transform: translateX(-140px); }
+  .intro-line[data-dir="right"] {
+    transform: translateX(140px);
+    transition-delay: 0.18s;
+  }
+  .intro-line.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Horizontal rule */
+  .intro-rule {
+    width: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.35);
+    transition: width 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
+  }
+  .intro-rule.visible { width: 100px; }
+
+  /* Description */
+  .intro-desc {
+    max-width: 600px;
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.4vw, 18px);
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    transition: opacity 1s ease 0.9s;
+  }
+  .intro-desc.visible {
+    opacity: 1;
   }
 
   /* Narrative Gallery Section */
@@ -941,38 +1000,6 @@ body.has-custom-cursor * {
     white-space: nowrap;
   }
 
-  .intro-image-wrapper {
-    background: var(--color-bg-subtle);
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-
-  .intro-image-wrapper::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 2;
-  }
-
-  .intro-image-wrapper img,
-  .intro-image-wrapper video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-smooth);
-  }
-
-  .intro-image-wrapper video {
-    filter: saturate(0.35) brightness(0.9) contrast(1.05);
-  }
-
-  .intro-image-wrapper:hover img,
-  .intro-image-wrapper:hover video {
-    transform: scale(1.03);
-  }
 
   /* Narrative Preview Banner (Image Reference Layout) */
   .narrative-preview {
@@ -1251,7 +1278,6 @@ body.has-custom-cursor * {
   /* CSS Contain ???뱀뀡 媛??덉씠?꾩썐 ?ш퀎??李⑤떒 */
   .quote-section,
   .gallery-section,
-  .intro-section,
   .cta-section {
     contain: layout style;
   }
@@ -1429,31 +1455,11 @@ body.has-custom-cursor * {
       font-size: 24px;
     }
 
-    .intro-section {
-      padding: 64px 24px;
-      min-height: 100vh;
-    }
-
-    .intro-col-label {
-      width: auto;
-      padding-bottom: 0;
-      justify-content: flex-start;
-    }
-
-    .intro-label {
-      writing-mode: horizontal-tb;
-      transform: none;
-    }
-
-    .intro-col-text {
-      padding-top: 0;
-      gap: 16px;
-    }
-
-    .intro-col-image {
-      padding-top: 0;
-      width: 100%;
-    }
+    .intro-content { padding: 0 24px; gap: 20px; }
+    .intro-heading { font-size: clamp(36px, 9vw, 56px); }
+    .intro-line[data-dir="left"]  { transform: translateX(-60px); }
+    .intro-line[data-dir="right"] { transform: translateX(60px);  }
+    .intro-desc { font-size: 15px; }
 
     .gallery-section {
       padding: 64px 24px;

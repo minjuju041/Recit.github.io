@@ -205,6 +205,43 @@ document.addEventListener('DOMContentLoaded', () => {
     revealObserver.observe(el);
   });
 
+  // --- Intro Section: Cinematic Letterbox Scroll Sequence ---
+  const introTrack = document.querySelector('.intro-scroll-track');
+  if (introTrack) {
+    const introLines   = introTrack.querySelectorAll('.intro-line');
+    const introRule    = introTrack.querySelector('.intro-rule');
+    const introDesc    = introTrack.querySelector('.intro-desc');
+    const introOverlay = introTrack.querySelector('.intro-overlay');
+    const introVideo   = introTrack.querySelector('.intro-video');
+
+    let introVisible = false;
+
+    function introOnScroll() {
+      const rect = introTrack.getBoundingClientRect();
+      const trackScrollable = introTrack.offsetHeight - window.innerHeight;
+      const progress = Math.max(0, Math.min(1, -rect.top / trackScrollable));
+
+      // Trigger all text elements when section enters viewport
+      if (!introVisible && rect.top < window.innerHeight * 0.85) {
+        introVisible = true;
+        introLines.forEach(l => l.classList.add('visible'));
+        if (introRule) introRule.classList.add('visible');
+        if (introDesc) introDesc.classList.add('visible');
+      }
+
+      if (!introVisible) return;
+
+      // Overlay lightens as scroll progresses (0.72 → 0.38)
+      if (introOverlay) introOverlay.style.opacity = 0.72 - progress * 0.34;
+
+      // Video subtle parallax zoom (1.0 → 1.07)
+      if (introVideo) introVideo.style.transform = `scale(${1 + progress * 0.07})`;
+    }
+
+    window.addEventListener('scroll', introOnScroll, { passive: true });
+    introOnScroll();
+  }
+
   // --- Gallery: dfyint-style Interactive Parallax & Background Typography Scroll ---
   const galleryContainer = document.querySelector('.gallery-scroll-container');
   const projectCards     = document.querySelectorAll('.gallery-project-card');

@@ -18,7 +18,7 @@
     rel="stylesheet">
 
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="styles.css?v=16">
 </head>
 
 <body>
@@ -103,19 +103,29 @@
 
     <!-- Intro Feature Section -->
     <section class="intro-section" id="about">
+      <div class="intro-scroll-track">
+        <div class="intro-sticky">
 
-      <div class="intro-col-text">
-        <h2 class="intro-heading">Capture the feeling, not just the photo.</h2>
-        <p class="intro-desc">
-          A photo captures what something looked like. Récit captures what it felt like. Instead of facing a blank page, you choose from a guided list—light, temperature, scent, emotion—the way you'd pick a photo. A guide card directs the shot, a candle sets the mood, and the moment becomes something you can return to, long after the trip ends.
-        </p>
-      </div>
+          <!-- Video background -->
+          <div class="intro-video-wrap">
+            <video class="intro-video" autoplay muted loop playsinline>
+              <source src="assets/about_travel.mp4" type="video/mp4">
+            </video>
+            <div class="intro-overlay"></div>
+          </div>
 
-      <div class="intro-col-image">
-        <div class="intro-image-wrapper">
-          <video class="intro-video" autoplay muted loop playsinline>
-            <source src="assets/about_travel.mp4" type="video/mp4">
-          </video>
+          <!-- Text content -->
+          <div class="intro-content">
+            <h2 class="intro-heading">
+              <span class="intro-line" data-dir="left">Capture the feeling,</span>
+              <span class="intro-line" data-dir="right">not just the photo.</span>
+            </h2>
+            <div class="intro-rule"></div>
+            <p class="intro-desc">
+              A photo captures what something looked like. Récit captures what it felt like. Instead of facing a blank page, you choose from a guided list—light, temperature, scent, emotion—the way you'd pick a photo. A guide card directs the shot, a candle sets the mood, and the moment becomes something you can return to, long after the trip ends.
+            </p>
+          </div>
+
         </div>
       </div>
     </section>
@@ -312,7 +322,7 @@
   </footer>
 
   <!-- Interactive Logic -->
-  <script src="script.js?v=14"></script>
+  <script src="script.js?v=16"></script>
 
 </body>
 
