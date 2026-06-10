@@ -179,13 +179,29 @@ document.addEventListener('DOMContentLoaded', () => {
     ...document.querySelectorAll('.process-row'),
     ...document.querySelectorAll('.cta-section'),
     ...document.querySelectorAll('.quote-container'),
-    ...document.querySelectorAll('.tp-profile-text'),
-    ...document.querySelectorAll('.tp-profile-img-wrapper'),
     ...document.querySelectorAll('.tp-quote-inner')
   ];
 
   revealElements.forEach(el => {
     el.classList.add('reveal');
+    revealObserver.observe(el);
+  });
+
+  const revealLeftElements = [
+    ...document.querySelectorAll('#minju .tp-profile-text'),
+    ...document.querySelectorAll('#minju .tp-profile-img-wrapper')
+  ];
+  revealLeftElements.forEach(el => {
+    el.classList.add('reveal-left');
+    revealObserver.observe(el);
+  });
+
+  const revealRightElements = [
+    ...document.querySelectorAll('#kyungjae .tp-profile-text'),
+    ...document.querySelectorAll('#kyungjae .tp-profile-img-wrapper')
+  ];
+  revealRightElements.forEach(el => {
+    el.classList.add('reveal-right');
     revealObserver.observe(el);
   });
 

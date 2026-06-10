@@ -1090,7 +1090,7 @@ body.has-custom-cursor * {
     pointer-events: auto;
   }
 
-  /* Scroll Reveal ??CSS?먯꽌 ?뺤쓽 (JS ?숈쟻 二쇱엯 ?쒓굅) */
+  /* Scroll Reveal — CSS에서 정의 (JS 동적 주입 제거) */
   .reveal {
     opacity: 0;
     transform: translateY(32px);
@@ -1101,6 +1101,30 @@ body.has-custom-cursor * {
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+  
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-48px);
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(48px);
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
   }
   .reveal-delay-1 { transition-delay: 0.12s; }
   .reveal-delay-2 { transition-delay: 0.24s; }
