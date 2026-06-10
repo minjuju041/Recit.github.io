@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
 
   const revealTargets = [
-    ...document.querySelectorAll('.pd-narrative-inner'),
     ...document.querySelectorAll('.pd-step'),
     ...document.querySelectorAll('.pd-instrument'),
     ...document.querySelectorAll('.pd-immersive-card'),
@@ -131,3 +130,18 @@ if (document.readyState === 'loading') {
 } else {
   initCartPopup();
 }
+
+// Add blur effect to sequence videos when they finish playing
+document.addEventListener('DOMContentLoaded', () => {
+  const sequenceVideos = document.querySelectorAll('.pd-step video');
+  sequenceVideos.forEach(video => {
+    video.addEventListener('ended', () => {
+      video.classList.add('video-ended-blur');
+    });
+    
+    // Optional: remove blur if they replay the video
+    video.addEventListener('play', () => {
+      video.classList.remove('video-ended-blur');
+    });
+  });
+});

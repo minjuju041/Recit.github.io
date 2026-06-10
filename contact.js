@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.ct-form');
   const popupOverlay = document.getElementById('success-popup');
   const popupCloseBtn = document.getElementById('success-close');

@@ -18,7 +18,7 @@
     rel="stylesheet">
 
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 
 <body>
@@ -28,10 +28,11 @@
     <a href="#" class="logo" aria-label="Récit Home">Récit</a>
     <nav aria-label="Main Navigation">
       <ul class="nav-menu">
-        <li><a href="#hero" class="nav-link active">Work</a></li>
-        <li><a href="#narrative" class="nav-link">Narrative</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#studio" class="nav-link">Studio</a></li>
+        <li><a href="#hero" class="nav-link active">Intro</a></li>
+        <li><a href="#mission" class="nav-link">Problem</a></li>
+        <li><a href="#about" class="nav-link">Solution</a></li>
+        <li><a href="#narrative" class="nav-link">Feature</a></li>
+        <li><a href="#studio" class="nav-link">Work</a></li>
       </ul>
     </nav>
     <div class="nav-right">
@@ -58,7 +59,7 @@
       <!-- Accessible click target (visually transparent, z-index above canvas) -->
       <a href="#hero" class="landing-logo" aria-label="Récit — scroll to work"></a>
 
-      <!-- 전환 오버레이: 스크롤 완료 시 흰색으로 페이드인 -->
+      <!-- ?꾪솚 ?ㅻ쾭?덉씠: ?ㅽ겕濡??꾨즺 ???곗깋?쇰줈 ?섏씠?쒖씤 -->
       <div class="landing-flash" aria-hidden="true"></div>
 
       <div class="landing-scroll" aria-hidden="true">
@@ -71,19 +72,15 @@
 
   <main>
 
-    <!-- Hero Section -->
+    <!-- Hero Full-Screen Auto-playing Video -->
     <section class="hero-section" id="hero">
       <div class="hero-left">
         <h1 class="hero-title">
-          <span>WE CREATE</span>
-          <span>A CINEMATIC</span>
-          <span>NARRATIVE FOR</span>
-          <span>YOUR SPECIAL</span>
-          <span>MEMORIES.</span>
+          <span>Deeper than thousands of photos, a record that turns</span>
+          <span>your journey into a movie.</span>
         </h1>
         <p class="hero-desc">
-          Preserving the intangible essence of time through the lens of sophisticated visual storytelling and editorial
-          precision.
+          Instead of evaporating social media feeds, my own mise-en-scène and narrative filled with the five senses
         </p>
       </div>
       <div class="hero-right">
@@ -99,133 +96,21 @@
       </div>
       <div class="quote-container">
         <blockquote class="quote-text">
-          "Beyond simple records, don't you want to feel the emotions and atmosphere of that day again?"
+          "I upload dozens of photos and reels while traveling, but why do I feel so empty when I return?"
         </blockquote>
-      </div>
-    </section>
-
-    <!-- Narrative Gallery Section -->
-    <section class="gallery-section" id="narrative">
-<<<<<<< HEAD
-      
-      <!-- Narrative Preview Banner (based on image reference) -->
-      <div class="narrative-preview">
-        <div class="narrative-video-wrapper">
-          <video class="narrative-preview-video active" autoplay muted playsinline loop preload="none"
-                 src="assets/narrative_video_1.mp4"
-                 style="object-position: 25% 68%;"></video>
-
-          <video class="narrative-preview-video" muted playsinline preload="none"
-                 src="assets/narrative_video_2.mp4"></video>
-          <video class="narrative-preview-video" muted playsinline preload="none"
-                 src="assets/narrative_video_3.mp4"></video>
-          <video class="narrative-preview-video" muted playsinline preload="none"
-                 src="assets/narrative_video_4.mp4"
-                 style="object-position: 50% 85%;"></video>
-          <video class="narrative-preview-video" muted playsinline preload="none"
-                 src="assets/narrative_video_5.mp4"
-                 style="object-position: 50% 50%;"></video>
-        </div>
-        <div class="narrative-text-row">
-          <span class="narrative-tagline">A LITTLE PREVIEW OF WHAT WE CAN DO</span>
-          <h2 class="narrative-large-title">NARRATIVE.</h2>
-        </div>
-=======
-      <div class="gallery-header">
-        <h2 class="gallery-title">Why Récit</h2>
-        <span class="gallery-subtitle">Recording the traveler's experience</span>
->>>>>>> f02b6a0da0188fa9e330cfd34efd5e4e75648cb3
-      </div>
-
-      <div class="gallery-scroll-container">
-        <!-- Sticky Background for Giant Text -->
-        <div class="gallery-bg-sticky">
-          <div class="gallery-bg-text-wrapper active" data-project="1">
-            <div class="bg-row bg-row-1">THE ESSENCE THE ESSENCE THE ESSENCE THE ESSENCE THE ESSENCE</div>
-            <div class="bg-row bg-row-2">OF ANALOG OF ANALOG OF ANALOG OF ANALOG OF ANALOG</div>
-          </div>
-<<<<<<< HEAD
-          <div class="gallery-bg-text-wrapper" data-project="2">
-            <div class="bg-row bg-row-1">FLUIDITY FLUIDITY FLUIDITY FLUIDITY FLUIDITY</div>
-            <div class="bg-row bg-row-2">OF TIME OF TIME OF TIME OF TIME OF TIME</div>
-          </div>
-          <div class="gallery-bg-text-wrapper" data-project="3">
-            <div class="bg-row bg-row-1">DELAYED DELAYED DELAYED DELAYED DELAYED</div>
-            <div class="bg-row bg-row-2">REUNION REUNION REUNION REUNION REUNION</div>
-          </div>
-          <div class="gallery-recent-label">RECENT PROJECTS</div>
-        </div>
-=======
-          <h3 class="gallery-item-title">01 Not piled up, but kept</h3>
-        </article>
->>>>>>> f02b6a0da0188fa9e330cfd34efd5e4e75648cb3
-
-        <!-- Vertical Scroll Content -->
-        <div class="gallery-scroll-content">
-          <!-- Card 1 -->
-          <div class="gallery-project-card card-right" data-project="1">
-            <div class="card-inner">
-              <span class="card-num">N°0001</span>
-              <div class="card-img-wrap">
-                <img src="assets/vintage_camera.jpg" alt="Vintage analog film camera" loading="lazy">
-              </div>
-              <div class="card-footer">
-                <span class="card-title">THE ESSENCE OF ANALOG</span>
-              </div>
-            </div>
-          </div>
-<<<<<<< HEAD
-=======
-          <h3 class="gallery-item-title">02 Not captured, but felt</h3>
-        </article>
->>>>>>> f02b6a0da0188fa9e330cfd34efd5e4e75648cb3
-
-          <!-- Card 2 -->
-          <div class="gallery-project-card card-left" data-project="2">
-            <div class="card-inner">
-              <span class="card-num">N°0002</span>
-              <div class="card-img-wrap">
-                <img src="assets/ocean_waves.jpg" alt="Ocean waves at dusk" loading="lazy">
-              </div>
-              <div class="card-footer">
-                <span class="card-title">FLUIDITY OF TIME</span>
-              </div>
-            </div>
-          </div>
-<<<<<<< HEAD
-
-          <!-- Card 3 -->
-          <div class="gallery-project-card card-center" data-project="3">
-            <div class="card-inner">
-              <span class="card-num">N°0003</span>
-              <div class="card-img-wrap">
-                <img src="assets/solitary_tree.jpg" alt="Misty pine forest" loading="lazy">
-              </div>
-              <div class="card-footer">
-                <span class="card-title">DELAYED REUNION</span>
-              </div>
-            </div>
-          </div>
-        </div>
-=======
-          <h3 class="gallery-item-title">03 Not now, but a year from now</h3>
-        </article>
->>>>>>> f02b6a0da0188fa9e330cfd34efd5e4e75648cb3
       </div>
     </section>
 
     <!-- Intro Feature Section -->
     <section class="intro-section" id="about">
-      <div class="intro-col-label">
-        <div class="intro-label">Story of Emotion</div>
-      </div>
+
       <div class="intro-col-text">
-        <h2 class="intro-heading">A delicate approach to the moments that matter most.</h2>
+        <h2 class="intro-heading">Capture the feeling, not just the photo.</h2>
         <p class="intro-desc">
-          We believe that true luxury lies in the details that often go unnoticed. Our philosophy is rooted in the pursuit<br>
-          of the 'cinematic soul'—the intangible atmosphere that turns a mere visual into a lasting memory.
+          A photo captures what something looked like. Récit captures what it felt like. Instead of facing a blank page, you choose from a guided list—light, temperature, scent, emotion—the way you'd pick a photo. A guide card directs the shot, a candle sets the mood, and the moment becomes something you can return to, long after the trip ends.
         </p>
       </div>
+
       <div class="intro-col-image">
         <div class="intro-image-wrapper">
           <video class="intro-video" autoplay muted loop playsinline>
@@ -235,10 +120,81 @@
       </div>
     </section>
 
+    <!-- Narrative Gallery Section -->
+    <section class="gallery-section" id="narrative">
+      <!-- Narrative Preview Banner (based on image reference) -->
+      <div class="narrative-preview">
+
+
+      </div>
+
+      <div class="gallery-scroll-container">
+        <!-- Sticky Background for Giant Text -->
+        <div class="gallery-bg-sticky">
+          <div class="gallery-bg-text-wrapper active" data-project="1">
+            <div class="bg-row bg-row-1">THE ESSENCE THE ESSENCE THE ESSENCE THE ESSENCE THE ESSENCE</div>
+            <div class="bg-row bg-row-2">OF ANALOG OF ANALOG OF ANALOG OF ANALOG OF ANALOG</div>
+          </div>
+          <div class="gallery-bg-text-wrapper" data-project="2">
+            <div class="bg-row bg-row-1">FLUIDITY FLUIDITY FLUIDITY FLUIDITY FLUIDITY</div>
+            <div class="bg-row bg-row-2">OF TIME OF TIME OF TIME OF TIME OF TIME</div>
+          </div>
+          <div class="gallery-bg-text-wrapper" data-project="3">
+            <div class="bg-row bg-row-1">DELAYED DELAYED DELAYED DELAYED DELAYED</div>
+            <div class="bg-row bg-row-2">REUNION REUNION REUNION REUNION REUNION</div>
+          </div>
+
+        </div>
+
+        <!-- Vertical Scroll Content -->
+        <div class="gallery-scroll-content">
+          <!-- Card 1 -->
+          <div class="gallery-project-card card-right" data-project="1">
+            <div class="card-inner">
+              <span class="card-num">N째0001</span>
+              <div class="card-img-wrap">
+                <img src="assets/vintage_camera.jpg" alt="Vintage analog film camera" loading="lazy">
+              </div>
+              <div class="card-footer">
+                <span class="card-title">THE ESSENCE OF ANALOG</span>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Card 2 -->
+          <div class="gallery-project-card card-left" data-project="2">
+            <div class="card-inner">
+              <span class="card-num">N째0002</span>
+              <div class="card-img-wrap">
+                <img src="assets/ocean_waves.jpg" alt="Ocean waves at dusk" loading="lazy">
+              </div>
+              <div class="card-footer">
+                <span class="card-title">FLUIDITY OF TIME</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="gallery-project-card card-center" data-project="3">
+            <div class="card-inner">
+              <span class="card-num">N째0003</span>
+              <div class="card-img-wrap">
+                <img src="assets/solitary_tree.jpg" alt="Misty pine forest" loading="lazy">
+              </div>
+              <div class="card-footer">
+                <span class="card-title">DELAYED REUNION</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Process Section -->
     <section class="process-section" id="studio">
       <div class="process-header">
-        <h2 class="process-title">Process</h2>
+        <h2 class="process-title">How It Works</h2>
       </div>
 
       <div class="process-rows">
@@ -252,7 +208,7 @@
             <span class="process-step">STEP 01</span>
             <h3 class="process-step-title">Discovery</h3>
             <p class="process-step-desc">
-              We discover cinematic moments in fleeting glimpses of travel destinations that are easy to overlook. Viewing landscapes and gastronomy taken for granted through a new sensory frame—that is the beginning of a narrative.
+              We discover cinematic moments in fleeting glimpses of travel destinations that are easy to overlook. Viewing landscapes and gastronomy taken for granted through a new sensory frame?봳hat is the beginning of a narrative.
             </p>
           </div>
         </div>
@@ -267,7 +223,7 @@
             <span class="process-step">STEP 02</span>
             <h3 class="process-step-title">Curation</h3>
             <p class="process-step-desc">
-              We break away from meaningless records that merely list every moment. We intuitively select the temperature of the air, the angle of the light, and the weight of the heart that filled the space of that day to precisely edit your own unique mise-en-scène.
+              We break away from meaningless records that merely list every moment. We intuitively select the temperature of the air, the angle of the light, and the weight of the heart that filled the space of that day to precisely edit your own unique mise-en-sc챔ne.
             </p>
           </div>
         </div>
@@ -292,7 +248,7 @@
     <!-- CTA Section -->
     <section class="cta-section" id="contact">
       <h2 class="cta-heading">Create your narrative now.</h2>
-      <a href="mailto:inquire@recit.com" class="cta-button">Inquire for 2025</a>
+      <a href="product.html" class="cta-button">Click to see products</a>
     </section>
 
   </main>
@@ -347,7 +303,7 @@
   </footer>
 
   <!-- Interactive Logic -->
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 
 </body>
 

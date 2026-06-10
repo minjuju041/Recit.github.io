@@ -80,7 +80,7 @@
     --font-heading: 'Cormorant Garamond', serif;
     --font-body: 'Cormorant Garamond', serif;
     --font-sans: 'Hanken Grotesk', sans-serif;
-    --font-watermark: 'Bodoni Moda', serif;
+    --font-watermark: 'Cormorant Garamond', serif;
 
     /* Transitions */
     --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
@@ -89,7 +89,8 @@
 }
 
 /* Custom Cursor */
-* {
+body.has-custom-cursor,
+body.has-custom-cursor * {
   cursor: none !important;
 }
 
@@ -177,11 +178,11 @@
     height: 100vh;
     background: #000;
     overflow: hidden;
-    /* contain: 이 섹션 바깥으로 레이아웃/페인트 전파 차단 */
+    /* contain: ???뱀뀡 諛붽묑?쇰줈 ?덉씠?꾩썐/?섏씤???꾪뙆 李⑤떒 */
     contain: layout style paint;
   }
 
-  /* 배경 영상 — 캔버스 텍스트 구멍 뒤에서만 보임 */
+  /* 諛곌꼍 ?곸긽 ??罹붾쾭???띿뒪??援щ찉 ?ㅼ뿉?쒕쭔 蹂댁엫 */
   .logo-video {
     position: absolute;
     inset: 0;
@@ -190,16 +191,16 @@
     object-fit: cover;
     object-position: center center;
     z-index: 1;
-    /* GPU 레이어 분리로 디코딩 부하 격리 */
+    /* GPU ?덉씠??遺꾨━濡??붿퐫??遺??寃⑸━ */
     will-change: transform;
   }
 
-  /* ── Canvas 마스크 ──────────────────────────────────
-     · 전체를 검정으로 채운 뒤 destination-out으로
-       폰트 모양만 투명하게 뚫어냄
-     · 투명 영역 아래 비디오가 비쳐 텍스트 안에서만 영상이 보임
-     · mix-blend-mode 없음 → GPU 컴포지팅 오버헤드 제로
-     ───────────────────────────────────────────────── */
+  /* ?? Canvas 留덉뒪????????????????????????????????????
+     쨌 ?꾩껜瑜?寃?뺤쑝濡?梨꾩슫 ??destination-out?쇰줈
+       ?고듃 紐⑥뼇留??щ챸?섍쾶 ?レ뼱??
+     쨌 ?щ챸 ?곸뿭 ?꾨옒 鍮꾨뵒?ㅺ? 鍮꾩퀜 ?띿뒪???덉뿉?쒕쭔 ?곸긽??蹂댁엫
+     쨌 mix-blend-mode ?놁쓬 ??GPU 而댄룷吏???ㅻ쾭?ㅻ뱶 ?쒕줈
+     ????????????????????????????????????????????????? */
   .logo-canvas {
     position: absolute;
     inset: 0;
@@ -257,11 +258,13 @@
 
   /* Intro Feature Section */
   .intro-section {
+    position: relative;
     display: flex;
-    gap: 40px;
     padding: 128px 64px;
-    background: var(--color-bg-primary);
-    align-items: flex-start;
+    min-height: 800px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
   }
 
   .intro-col-label {
@@ -273,16 +276,31 @@
   }
 
   .intro-col-text {
-    flex: 1;
-    padding-top: 96px;
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    text-align: center;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 24px;
   }
 
+  .intro-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 500;
+  }
+
   .intro-col-image {
-    flex: 1;
-    padding-top: 48px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: calc(100% - 200px);
+    height: calc(100% - 200px);
+    z-index: 1;
   }
 
   /* Narrative Gallery Section */
@@ -298,7 +316,7 @@
     width: 100%;
   }
 
-  /* ── Gallery: dfyint-style Sticky Typography & Scrolling Cards ───────── */
+  /* ?? Gallery: dfyint-style Sticky Typography & Scrolling Cards ????????? */
   .gallery-scroll-container {
     position: relative;
     width: 100%;
@@ -567,7 +585,7 @@
 
 @layer components {
   /* Landing Section Components */
-  /* 투명 클릭 영역 — 시각적 렌더링은 canvas가 담당 */
+  /* ?щ챸 ?대┃ ?곸뿭 ???쒓컖???뚮뜑留곸? canvas媛 ?대떦 */
   .landing-logo {
     position: absolute;
     inset: 0;
@@ -576,7 +594,7 @@
     cursor: pointer;
   }
 
-  /* 스크롤 완료 → 다음 페이지 진입 전환 오버레이 */
+  /* ?ㅽ겕濡??꾨즺 ???ㅼ쓬 ?섏씠吏 吏꾩엯 ?꾪솚 ?ㅻ쾭?덉씠 */
   .landing-flash {
     position: fixed;
     inset: 0;
@@ -588,10 +606,10 @@
   }
   .landing-flash.in { opacity: 1; pointer-events: auto; }
 
-  /* ── 워크(hero) 섹션 흰 화면에서 등장 ──────────────────────────
-     .wt-entering  : 콘텐츠를 미리 투명하게
-     .wt-revealed  : 화이트 페이드아웃과 함께 콘텐츠 페이드인
-     ─────────────────────────────────────────────────────────── */
+  /* ?? ?뚰겕(hero) ?뱀뀡 ???붾㈃?먯꽌 ?깆옣 ??????????????????????????
+     .wt-entering  : 肄섑뀗痢좊? 誘몃━ ?щ챸?섍쾶
+     .wt-revealed  : ?붿씠???섏씠?쒖븘?껉낵 ?④퍡 肄섑뀗痢??섏씠?쒖씤
+     ??????????????????????????????????????????????????????????? */
   .hero-section.wt-entering .hero-left,
   .hero-section.wt-entering .hero-right {
     opacity: 0;
@@ -600,7 +618,7 @@
 
   .hero-section.wt-entering .hero-left,
   .hero-section.wt-entering .hero-right {
-    transition: none;   /* 진입 시엔 즉시 숨김 */
+    transition: none;   /* 吏꾩엯 ?쒖뿏 利됱떆 ?④? */
   }
 
   .hero-section.wt-revealed .hero-left {
@@ -626,7 +644,7 @@
     bottom: 48px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10;          /* 마스크 오버레이 위에 표시 */
+    z-index: 10;          /* 留덉뒪???ㅻ쾭?덉씠 ?꾩뿉 ?쒖떆 */
     animation: landingFadeUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both;
     transition: opacity 0.4s ease, transform 0.4s ease;
     will-change: opacity, transform;
@@ -683,7 +701,7 @@
     100% { top: 100%; }
   }
 
-  /* ── Nav dark-background override (must be in components to beat .logo specificity) ── */
+  /* ?? Nav dark-background override (must be in components to beat .logo specificity) ?? */
   .site-header.nav--on-dark {
     position: absolute;
     top: 0;
@@ -790,9 +808,9 @@
 
   .hero-desc {
     font-family: var(--font-heading);
-    font-size: clamp(14px, 1.5vw, 16px);
+    font-size: 18px;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.8;
     color: var(--color-text-secondary);
     max-width: 448px;
     letter-spacing: -0.32px;
@@ -851,8 +869,17 @@
   .intro-image-wrapper {
     background: var(--color-bg-subtle);
     overflow: hidden;
-    aspect-ratio: 4 / 3;
+    width: 100%;
+    height: 100%;
     position: relative;
+  }
+
+  .intro-image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
   }
 
   .intro-image-wrapper img,
@@ -889,14 +916,14 @@
   }
 
 
-  /* Narrative preview videos — real footage with low-saturation cinematic grade */
+  /* Narrative preview videos ??real footage with low-saturation cinematic grade */
   .narrative-preview-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 100%; /* 모든 영상 하단 정렬 */
+    object-position: 50% 100%; /* 紐⑤뱺 ?곸긽 ?섎떒 ?뺣젹 */
     display: block;
     opacity: 0;
     filter: saturate(0.35);
@@ -1043,7 +1070,7 @@
     max-width: 440px;
   }
 
-  /* Page Transition Overlay — opacity + scale (GPU 효율) */
+  /* Page Transition Overlay ??opacity + scale (GPU ?⑥쑉) */
   .page-transition-overlay {
     position: fixed;
     inset: 0;
@@ -1064,7 +1091,7 @@
     pointer-events: auto;
   }
 
-  /* Scroll Reveal — CSS에서 정의 (JS 동적 주입 제거) */
+  /* Scroll Reveal ??CSS?먯꽌 ?뺤쓽 (JS ?숈쟻 二쇱엯 ?쒓굅) */
   .reveal {
     opacity: 0;
     transform: translateY(32px);
@@ -1080,7 +1107,7 @@
   .reveal-delay-2 { transition-delay: 0.24s; }
   .reveal-delay-3 { transition-delay: 0.36s; }
 
-  /* CSS Contain — 섹션 간 레이아웃 재계산 차단 */
+  /* CSS Contain ???뱀뀡 媛??덉씠?꾩썐 ?ш퀎??李⑤떒 */
   .quote-section,
   .gallery-section,
   .intro-section,
@@ -1263,9 +1290,8 @@
     }
 
     .intro-section {
-      flex-direction: column;
       padding: 64px 24px;
-      gap: 32px;
+      min-height: 100vh;
     }
 
     .intro-col-label {

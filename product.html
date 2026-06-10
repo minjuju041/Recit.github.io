@@ -8,9 +8,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500;1,6..96,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500;1,6..96,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Cormorant+Infant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=6">
   <link rel="stylesheet" href="product.css?v=7">
 </head>
 <body>
@@ -20,10 +20,11 @@
     <a href="index.html" class="logo" aria-label="Récit Home">Récit</a>
     <nav aria-label="Main Navigation">
       <ul class="nav-menu">
-        <li><a href="index.html#hero" class="nav-link">Work</a></li>
-        <li><a href="index.html#narrative" class="nav-link">Narrative</a></li>
-        <li><a href="index.html#about" class="nav-link">About</a></li>
-        <li><a href="index.html#studio" class="nav-link">Studio</a></li>
+        <li><a href="index.html#hero" class="nav-link">Intro</a></li>
+        <li><a href="index.html#mission" class="nav-link">Problem</a></li>
+        <li><a href="index.html#about" class="nav-link">Solution</a></li>
+        <li><a href="index.html#narrative" class="nav-link">Feature</a></li>
+        <li><a href="index.html#studio" class="nav-link">Work</a></li>
       </ul>
     </nav>
     <div class="nav-right">
@@ -35,86 +36,167 @@
 
   <main>
 
-    <!-- ① Hero Section -->
+    <!-- ??Hero Section -->
     <section class="pd-hero">
       <div class="pd-hero-bg">
-        <img src="assets/product_hero_bg.jpg" alt="Récit Scene One Kit flatlay with Scene Note, Time Capsule, Hexar RF camera and candle" loading="eager">
+        <img src="assets/Firefly.jpg" alt="Person holding Récit Scene One Kit black box" loading="eager">
         <div class="pd-hero-overlay" aria-hidden="true"></div>
       </div>
       <div class="pd-hero-content">
-        <span class="pd-hero-eyebrow">Instruments for Memory</span>
-        <h1 class="pd-hero-title">Récit kit</h1>
+        <span class="pd-hero-eyebrow">INSTRUMENTS FOR MEMORY</span>
+        <h1 class="pd-hero-title">Récit Kit</h1>
         <p class="pd-hero-subtitle">A record that turns your journey into a film,<br>deeper than a thousand photos.</p>
-        <div class="pd-hero-divider" aria-hidden="true"></div>
-        <a href="#product-buy" class="pd-hero-btn">Start Your First Narrative</a>
+        <a href="#product-buy" class="pd-hero-btn">Go to Buy Kit</a>
       </div>
     </section>
 
-    <!-- ② Narrative Introduction -->
-    <section class="pd-narrative">
+    <!-- ??Narrative Introduction -->
+    <section class="pd-narrative" id="uploaded-photos">
       <div class="pd-narrative-inner">
-        <div class="pd-narrative-heading">
-          <h2>The transient feed<br><em>— vs. —</em><br>The permanent soul.</h2>
-        </div>
-        <div class="pd-narrative-body">
-          <div class="pd-narrative-border">
-            <p>In an era of instant uploads and disappearing stories, our deepest personal memories are often reduced to a pixelated blur. We capture everything, yet feel nothing.</p>
-            <p>Récit kit was born from a desire to reclaim the weight of the moment. Not to share, but to keep. Not to inhabit a screen, but to inhabit a space.</p>
+        
+        <div class="pd-narrative-intro">
+          <div class="pd-narrative-intro-left">
+            <h1 class="title-transient">THE TRANSIENT FEED</h1>
+            <div class="vs">— VS —</div>
+            <h1 class="title-permanent">THE PERMANENT SOUL</h1>
+          </div>
+          <div class="pd-narrative-intro-right">
+            <span class="pd-narrative-eyebrow">THE PROBLEM OF DIGITAL RECORDS</span>
+            <div class="pd-narrative-body">
+              <p>In an era of instant uploads and disappearing stories, our deepest personal memories are often reduced to a pixelated blur. We capture everything, yet feel nothing. Récit kit was born from a desire to reclaim the weight of the moment. Not to share, but to keep. Not to inhabit a screen, but to inhabit a space.</p>
+            </div>
           </div>
         </div>
+
+        <div class="pd-narrative-gallery">
+          <div class="gallery-track">
+            <!-- Original 4 Items -->
+            <div class="pd-narrative-gallery-img frame-1">
+              <div class="frame-inner">
+                <img src="assets/image (1).jpg" alt="Uploaded Photo 1" loading="lazy">
+              </div>
+            </div>
+            <div class="pd-narrative-gallery-img frame-2">
+              <div class="frame-inner">
+                <img src="assets/image (2).jpg" alt="Uploaded Photo 2" loading="lazy">
+              </div>
+            </div>
+            <div class="pd-narrative-gallery-img frame-3">
+              <div class="frame-inner">
+                <img src="assets/image (3).jpg" alt="Uploaded Photo 3" loading="lazy">
+              </div>
+            </div>
+            <div class="pd-narrative-gallery-img frame-4">
+              <div class="frame-inner">
+                <img src="assets/image (4).jpg" alt="Uploaded Photo 4" loading="lazy">
+              </div>
+            </div>
+            
+            <!-- Duplicated 4 Items for Infinite Loop -->
+            <div class="pd-narrative-gallery-img frame-1">
+              <div class="frame-inner">
+                <img src="assets/image (1).jpg" alt="Uploaded Photo 1" loading="lazy">
+              </div>
+            </div>
+            <div class="pd-narrative-gallery-img frame-2">
+              <div class="frame-inner">
+                <img src="assets/image (2).jpg" alt="Uploaded Photo 2" loading="lazy">
+              </div>
+            </div>
+            <div class="pd-narrative-gallery-img frame-3">
+              <div class="frame-inner">
+                <img src="assets/image (3).jpg" alt="Uploaded Photo 3" loading="lazy">
+              </div>
+            </div>
+            <div class="pd-narrative-gallery-img frame-4">
+              <div class="frame-inner">
+                <img src="assets/image (4).jpg" alt="Uploaded Photo 4" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- ③ The Sequence (Process) -->
+    <!-- Travel Video Section -->
+    <section class="pd-travel-video">
+      <div class="pd-travel-video-inner">
+        <video src="assets/kit%20travel.mp4" autoplay loop muted playsinline class="travel-video-bg"></video>
+        <div class="pd-travel-video-content">
+          <h2 class="pd-travel-video-text">THE JOY OF TRAVEL, RECIT KIT</h2>
+          <p class="pd-travel-video-subtitle">Introducing the components and usage instructions<br>for the recit kit for your trip.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Break Section -->
+    <section class="pd-image-break">
+      <div class="pd-image-break-inner">
+        <img src="assets/www.png" alt="Récit Kit Details" loading="lazy">
+      </div>
+    </section>
+
+    <!-- — the Sequence (Process) -->
     <section class="pd-sequence">
       <div class="pd-sequence-inner">
-        <div class="pd-sequence-header">
-          <h2 class="pd-sequence-title">The Sequence</h2>
-          <div class="pd-sequence-rule" aria-hidden="true"></div>
-          <span class="pd-sequence-label">Process 01–03</span>
+        <div class="sequence-header">
+          <span class="line line-left"></span>
+          <h2 class="sequence-title">THE SEQUENCE</h2>
+          <span class="line line-right"></span>
         </div>
 
         <div class="pd-steps">
           <!-- Step 01 -->
           <div class="pd-step pd-step--01">
-            <div class="pd-step-img-wrap">
-              <video src="assets/product_step01.mp4" autoplay muted loop playsinline></video>
-              <div class="pd-step-card">
+            <div class="pd-step-01-left">
+              <video src="assets/product_step01.mp4" autoplay muted playsinline></video>
+            </div>
+            <div class="pd-step-01-right">
+              <h3 class="pd-step-large-title"><span class="pd-step-large-num">01 </span>ARRIVAL &amp;<br>SHOOTING</h3>
+              <div class="pd-step-card pd-step-card--01">
                 <span class="pd-step-num">01 / Directing</span>
-                <h3>Arrival &amp; Shooting</h3>
-                <p>Your Guide Card serves as your slate. Scan to unlock localized audio guides that direct your focus.</p>
+                <p>Your Guide Card Serves As Your Slate. Scan To Unlock Localized Audio Guides That Direct Your Focus.</p>
               </div>
             </div>
           </div>
 
           <!-- Step 02 -->
           <div class="pd-step pd-step--02">
-            <div class="pd-step-02-text">
-              <span class="pd-step-num">02 / Immersion</span>
-              <h3>Sensory Records</h3>
-              <p>Document the invisible layers — the scent of rain, the cadence of voices, the weight of light.</p>
+            <div class="pd-step-02-left">
+              <div class="pd-step-02-title-wrap">
+                <h3 class="pd-step-large-title">SENSORY <span class="pd-step-large-num">02</span><br>RECORDS</h3>
+              </div>
+              <div class="pd-step-card pd-step-card--02">
+                <span class="pd-step-num">02 / Immersion</span>
+                <p>Document The Invisible Layers — The Scent Of Rain, The Cadence Of Voices, The Weight Of Light.</p>
+              </div>
             </div>
-            <div class="pd-step-02-img">
-              <video src="assets/product_step02.mp4" autoplay muted loop playsinline></video>
+            <div class="pd-step-02-right">
+              <video src="assets/product_step02.mp4" autoplay muted playsinline></video>
             </div>
           </div>
 
           <!-- Step 03 -->
           <div class="pd-step pd-step--03">
-            <div class="pd-step-03-img">
-              <video src="assets/product_step03.mp4" autoplay muted loop playsinline></video>
+            <div class="pd-step-03-top">
+              <div class="pd-step-03-title-wrap">
+                <h3 class="pd-step-large-title">POST TRAVEL<br>FINISH <span class="pd-step-large-num">03</span></h3>
+              </div>
+              <div class="pd-step-card pd-step-card--03">
+                <span class="pd-step-num">03 / Sealing</span>
+                <p>Seal It With Heavy Wax, Locking The Narrative Away. It Will Be Returned To You In One Year — A Film From Your Past Self.</p>
+              </div>
             </div>
-            <div class="pd-step-03-text">
-              <span class="pd-step-num">03 / Sealing</span>
-              <h3>Post-travel Finish</h3>
-              <p>Seal it with heavy wax, locking the narrative away. It will be returned to you in one year — a film from your past self.</p>
+            <div class="pd-step-03-bottom">
+              <video src="assets/product_step03.mp4" autoplay muted playsinline></video>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ④ The Instruments (Product Components) -->
+    <!-- — the Instruments (Product Components) -->
     <section class="pd-instruments">
       <div class="pd-instruments-inner">
         <h2 class="pd-instruments-title">Key Features</h2>
@@ -122,33 +204,30 @@
           <!-- P/C -->
           <div class="pd-instrument">
             <div class="pd-instrument-img">
-              <img src="assets/product_instrument_01.jpg" alt="P/C — Camera and Guide Card" loading="lazy">
+              <img src="assets/product_instrument_01.jpg" alt="P/C ??Camera and Guide Card" loading="lazy">
             </div>
             <div class="pd-instrument-info">
-              <h3 class="pd-instrument-name">P/C</h3>
-              <span class="pd-instrument-sub">Camera &amp; Guide Card</span>
+              <h3 class="pd-instrument-name">CAMERA &amp; GUIDE CARD</h3>
               <p class="pd-instrument-desc">We provide guide cards to assist travelers on how to record their trip, and by following the instructions on the cards, you can capture your travel memories in photos.</p>
             </div>
           </div>
           <!-- S/A -->
           <div class="pd-instrument">
             <div class="pd-instrument-img">
-              <img src="assets/product_instrument_02.jpg" alt="S/A — Texture and Scent Note" loading="lazy">
+              <img src="assets/product_instrument_02.jpg" alt="S/A ??Texture and Scent Note" loading="lazy">
             </div>
             <div class="pd-instrument-info">
-              <h3 class="pd-instrument-name">S/A</h3>
-              <span class="pd-instrument-sub">Texture &amp; Scent Note</span>
+              <h3 class="pd-instrument-name">TEXTURE &amp; SCENT NOTE</h3>
               <p class="pd-instrument-desc">We provide travel journaling sheets similar to wine tasting notes, consisting of a checklist and vocabulary (acidity, body, etc.). Scented candles infused with the scent of the travel destination help you immerse yourself more deeply in your journey.</p>
             </div>
           </div>
           <!-- C/P -->
           <div class="pd-instrument">
             <div class="pd-instrument-img">
-              <img src="assets/product_instrument_03.jpg" alt="C/P — Time Capsule Delivery" loading="lazy">
+              <img src="assets/product_instrument_03.jpg" alt="C/P ??Time Capsule Delivery" loading="lazy">
             </div>
             <div class="pd-instrument-info">
-              <h3 class="pd-instrument-name">C/P</h3>
-              <span class="pd-instrument-sub">Time Capsule Delivery</span>
+              <h3 class="pd-instrument-name">TIME CAPSULE DELIVERY</h3>
               <p class="pd-instrument-desc">We are linking a future delivery service where travel memories are perfectly sealed away and returned to you in analog form one year later.</p>
             </div>
           </div>
@@ -156,7 +235,7 @@
       </div>
     </section>
 
-    <!-- ⑤ Immersive Scenario -->
+    <!-- ??Immersive Scenario -->
     <section class="pd-immersive">
       <div class="pd-immersive-bg">
         <video src="assets/product_immersive.mp4" autoplay muted loop playsinline></video>
@@ -178,12 +257,12 @@
       </div>
     </section>
 
-    <!-- ⑥ Final CTA & Product Buy -->
+    <!-- ??Final CTA & Product Buy -->
     <section class="pd-buy" id="product-buy">
       <div class="pd-buy-inner">
         <div class="pd-buy-heading">
           <span class="pd-buy-eyebrow">Record Your Travel Memories</span>
-          <h2 class="pd-buy-title">Are You Ready to turn<br>Your journey into a film?</h2>
+          <h2 class="pd-buy-title">ARE YOU READY TO TURN<br>YOUR JOURNEY INTO A FILM?</h2>
         </div>
         <div class="pd-buy-grid">
           <div class="pd-buy-img">
@@ -260,7 +339,7 @@
   <div id="cart-popup-overlay" class="cart-popup-overlay" aria-hidden="true">
     <div class="cart-popup" role="dialog" aria-modal="true" aria-labelledby="cart-popup-title">
       <div class="cart-popup-header">
-        <h2 id="cart-popup-title" class="cart-popup-title">Added to Cart!</h2>
+        <h2 id="cart-popup-title" class="cart-popup-title">ADDED TO CART!</h2>
         <button class="cart-popup-close" aria-label="Close popup" id="cart-popup-close-btn">
           <svg class="close-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1.22 1.22a.75.75 0 0 1 1.06 0L8 6.94l5.72-5.72a.75.75 0 1 1 1.06 1.06L9.06 8l5.72 5.72a.75.75 0 1 1-1.06 1.06L8 9.06l-5.72 5.72a.75.75 0 0 1-1.06-1.06L6.94 8 1.22 2.28a.75.75 0 0 1 0-1.06z" fill="currentColor"/>
@@ -291,7 +370,99 @@
     </div>
   </div>
 
-  <script src="script.js?v=4"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <script>
+    window.addEventListener('load', function() {
+      gsap.registerPlugin(ScrollTrigger);
+
+    // 1. 휘발되는 느낌 (Transient): 약간의 블러와 함께 페이드인
+    gsap.from(".title-transient", {
+      scrollTrigger: ".pd-narrative-intro",
+      opacity: 0,
+      filter: "blur(12px)",
+      y: -10,
+      duration: 1.6,
+      ease: "power2.out"
+    });
+
+    // 2. 단단하게 자리 잡는 느낌 (Permanent): 위에서 아래로 스르륵 내려옴
+    gsap.from(".title-permanent", {
+      scrollTrigger: ".pd-narrative-intro",
+      opacity: 0,
+      y: -30,
+      duration: 2,
+      delay: 0.4, // 두 텍스트의 시차를 둠
+      ease: "power3.out"
+    });
+
+    // 3. 텍스트 박스가 위에서 아래로 부드럽게 나타나는 효과
+    gsap.from(".pd-narrative-intro-right", {
+      scrollTrigger: {
+        trigger: ".pd-narrative-intro",
+        start: "top 85%"
+      },
+      opacity: 0,
+      y: -80,
+      duration: 1.5,
+      ease: "power3.out"
+    });
+
+    // 4. Travel Video Section Animation
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: ".pd-travel-video",
+        start: "top 80%",
+        toggleActions: "play none none none"
+      }
+    })
+    .to(".pd-travel-video-inner", {
+      scale: 1,
+      borderRadius: "0px",
+      duration: 1.6,
+      ease: "power3.inOut"
+    })
+    .to(".pd-travel-video-content", {
+      opacity: 1,
+      y: -10,
+      duration: 1,
+      ease: "power2.out"
+    }, "-=0.6");
+
+    // 5. Image Reveal Animation
+    gsap.from(".pd-image-break-inner img", {
+      scrollTrigger: {
+        trigger: ".pd-image-break-inner",
+        start: "top 80%",
+        toggleActions: "play none none none"
+      },
+      opacity: 0,
+      filter: "blur(12px)",
+      y: 30,
+      duration: 1.8,
+      ease: "power2.out"
+    });
+
+    // 6. Sequence Lines Animation
+    gsap.to(".line", {
+      scrollTrigger: {
+        trigger: ".sequence-header",
+        start: "top 85%",
+        toggleActions: "play none none none"
+      },
+      scaleX: 1,
+      duration: 1.5,
+      ease: "power3.out"
+    });
+
+
+
+    ScrollTrigger.refresh();
+    });
+  </script>
+
+  <script src="script.js?v=6"></script>
   <script src="product.js?v=4"></script>
 </body>
 </html>
