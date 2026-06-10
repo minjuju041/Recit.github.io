@@ -30,8 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   revealTargets.forEach((el, i) => {
-    el.classList.add('pd-reveal');
-    revealObs.observe(el);
+    if (el) {
+      el.classList.add('pd-reveal');
+      revealObs.observe(el);
+    }
   });
 });
 
