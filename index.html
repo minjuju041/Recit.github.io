@@ -16,6 +16,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500;1,6..96,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant+Infant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
+  <!-- Preload Hero Assets -->
+  <link rel="preload" href="assets/cinematic_corridor.jpg" as="image">
+  <link rel="preload" href="assets/hero_video.mp4" as="video" type="video/mp4">
 
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="styles.css?v=14">
@@ -85,7 +88,7 @@
       </div>
       <div class="hero-right">
         <img src="assets/cinematic_corridor.jpg"
-          alt="A dark cinematic corridor with red-toned columns receding into dramatic depth" loading="eager">
+          alt="A dark cinematic corridor with red-toned columns receding into dramatic depth" loading="eager" decoding="async">
       </div>
     </section>
 
@@ -113,7 +116,7 @@
 
       <div class="intro-col-image">
         <div class="intro-image-wrapper">
-          <video class="intro-video" autoplay muted loop playsinline>
+          <video class="intro-video" autoplay muted loop playsinline preload="metadata">
             <source src="assets/about_travel.mp4" type="video/mp4">
           </video>
         </div>
@@ -150,7 +153,7 @@
             <div class="card-inner">
               <span class="card-num">01</span>
               <div class="card-img-wrap">
-                <img src="assets/vintage_camera.jpg" alt="Vintage analog film camera" loading="lazy">
+                <img src="assets/vintage_camera.jpg" alt="Vintage analog film camera" loading="lazy" decoding="async">
               </div>
               <div class="card-footer">
                 <span class="card-title">Camera & Guide Card</span>
@@ -164,7 +167,7 @@
             <div class="card-inner">
               <span class="card-num">02</span>
               <div class="card-img-wrap">
-                <img src="assets/ocean_waves.jpg" alt="Ocean waves at dusk" loading="lazy">
+                <img src="assets/ocean_waves.jpg" alt="Ocean waves at dusk" loading="lazy" decoding="async">
               </div>
               <div class="card-footer">
                 <span class="card-title">THE SENSORY NOTEBOOK</span>
@@ -177,7 +180,7 @@
             <div class="card-inner">
               <span class="card-num">03</span>
               <div class="card-img-wrap">
-                <img src="assets/solitary_tree.jpg" alt="Misty pine forest" loading="lazy">
+                <img src="assets/solitary_tree.jpg" alt="Misty pine forest" loading="lazy" decoding="async">
               </div>
               <div class="card-footer">
                 <span class="card-title">A LETTER FROM A YEAR AGO</span>
@@ -199,18 +202,17 @@
       <div class="process-scroll-track">
         <div class="process-spotlight" id="processSpotlight">
 
-          <!-- Background images (dimmed, conic-sweep revealed on activation) -->
           <div class="ps-bg-layer">
-            <img src="assets/open_book.jpg"        class="ps-bg-img" data-step="0" alt="" loading="lazy">
-            <img src="assets/magnifying_glass.jpg"  class="ps-bg-img" data-step="1" alt="" loading="lazy">
-            <img src="assets/luxury_box.jpg"        class="ps-bg-img" data-step="2" alt="" loading="lazy">
+            <img src="assets/open_book.jpg"        class="ps-bg-img" data-step="0" alt="" loading="lazy" decoding="async">
+            <img src="assets/magnifying_glass.jpg"  class="ps-bg-img" data-step="1" alt="" loading="lazy" decoding="async">
+            <img src="assets/luxury_box.jpg"        class="ps-bg-img" data-step="2" alt="" loading="lazy" decoding="async">
           </div>
 
           <!-- Spotlight reveal layer (cursor circle) -->
           <div class="ps-reveal-layer" id="psRevealLayer">
-            <img src="assets/open_book.jpg"        class="ps-reveal-img" data-step="0" alt="" loading="lazy">
-            <img src="assets/magnifying_glass.jpg"  class="ps-reveal-img" data-step="1" alt="" loading="lazy">
-            <img src="assets/luxury_box.jpg"        class="ps-reveal-img" data-step="2" alt="" loading="lazy">
+            <img src="assets/open_book.jpg"        class="ps-reveal-img" data-step="0" alt="" loading="lazy" decoding="async">
+            <img src="assets/magnifying_glass.jpg"  class="ps-reveal-img" data-step="1" alt="" loading="lazy" decoding="async">
+            <img src="assets/luxury_box.jpg"        class="ps-reveal-img" data-step="2" alt="" loading="lazy" decoding="async">
           </div>
 
           <!-- Sweep animation line: rotates 360° from centre on each step -->
@@ -297,13 +299,13 @@
         </p>
         <div class="footer-socials">
           <a href="#instagram" aria-label="Instagram">
-            <img src="assets/icon_instagram.svg" alt="Instagram logo icon" class="footer-social-icon">
+            <img src="assets/icon_instagram.svg" alt="Instagram logo icon" class="footer-social-icon" loading="lazy" decoding="async">
           </a>
           <a href="#twitter" aria-label="Twitter">
-            <img src="assets/icon_twitter.svg" alt="Twitter logo icon" class="footer-social-icon">
+            <img src="assets/icon_twitter.svg" alt="Twitter logo icon" class="footer-social-icon" loading="lazy" decoding="async">
           </a>
           <a href="#facebook" aria-label="Facebook">
-            <img src="assets/icon_facebook.svg" alt="Facebook logo icon" class="footer-social-icon">
+            <img src="assets/icon_facebook.svg" alt="Facebook logo icon" class="footer-social-icon" loading="lazy" decoding="async">
           </a>
         </div>
       </div>

@@ -12,6 +12,9 @@
 
   <link rel="stylesheet" href="styles.css?v=4">
   <link rel="stylesheet" href="team.css">
+  
+  <!-- Preload Hero Assets -->
+  <link rel="preload" href="assets/team_hero.jpg" as="image">
 </head>
 <body>
 
@@ -39,7 +42,7 @@
     <!-- Hero Section -->
     <section class="tp-hero">
       <div class="tp-hero-bg">
-        <img src="assets/team_hero.jpg" alt="Abandoned grand ballroom with ornate arched windows and dramatic amber light" loading="eager">
+        <img src="assets/team_hero.jpg" alt="Abandoned grand ballroom with ornate arched windows and dramatic amber light" loading="eager" decoding="async">
         <div class="tp-hero-overlay" aria-hidden="true"></div>
       </div>
       <div class="tp-hero-content">
@@ -65,7 +68,7 @@
       </div>
       <div class="tp-profile-img-wrapper">
         <div class="tp-profile-img-inner">
-          <img src="assets/team_minju.jpg" alt="Minju Kim portrait" loading="lazy">
+          <img src="assets/team_minju.jpg" alt="Minju Kim portrait" loading="lazy" decoding="async">
           <div class="tp-img-desat" aria-hidden="true"></div>
         </div>
       </div>
@@ -75,7 +78,7 @@
     <section class="tp-profile tp-profile--reversed" id="kyungjae">
       <div class="tp-profile-img-wrapper">
         <div class="tp-profile-img-inner">
-          <img src="assets/team_kyungjae.jpg" alt="Kyungjae Mun portrait" loading="lazy">
+          <img src="assets/team_kyungjae.jpg" alt="Kyungjae Mun portrait" loading="lazy" decoding="async">
           <div class="tp-img-desat" aria-hidden="true"></div>
         </div>
       </div>
@@ -135,13 +138,13 @@
         </p>
         <div class="footer-socials">
           <a href="#instagram" aria-label="Instagram">
-            <img src="assets/icon_instagram.svg" alt="Instagram logo icon" class="footer-social-icon">
+            <img src="assets/icon_instagram.svg" alt="Instagram logo icon" class="footer-social-icon" loading="lazy" decoding="async">
           </a>
           <a href="#twitter" aria-label="Twitter">
-            <img src="assets/icon_twitter.svg" alt="Twitter logo icon" class="footer-social-icon">
+            <img src="assets/icon_twitter.svg" alt="Twitter logo icon" class="footer-social-icon" loading="lazy" decoding="async">
           </a>
           <a href="#facebook" aria-label="Facebook">
-            <img src="assets/icon_facebook.svg" alt="Facebook logo icon" class="footer-social-icon">
+            <img src="assets/icon_facebook.svg" alt="Facebook logo icon" class="footer-social-icon" loading="lazy" decoding="async">
           </a>
         </div>
       </div>
