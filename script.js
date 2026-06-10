@@ -129,9 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Apply reveal class to sections and visual items
   const revealElements = [
-    ...document.querySelectorAll('.intro-col-text'),
-    ...document.querySelectorAll('.intro-col-image'),
     ...document.querySelectorAll('.narrative-preview'),
+    ...document.querySelectorAll('.intro-text-row'),
     ...document.querySelectorAll('.process-row'),
     ...document.querySelectorAll('.cta-section'),
     ...document.querySelectorAll('.quote-container')
@@ -221,7 +220,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateGalleryParallax, { passive: true });
     updateGalleryParallax();
   }
-
 
   // ══════════════════════════════════════════════════════════════════
   // LANDING — Canvas destination-out text mask

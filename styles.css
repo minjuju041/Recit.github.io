@@ -255,35 +255,85 @@
     overflow: hidden;
   }
 
-  /* Intro Feature Section */
+  /* Intro Feature Section — mirrors narrative-preview layout */
   .intro-section {
     display: flex;
-    gap: 40px;
+    flex-direction: column;
+    width: 100%;
     padding: 128px 64px;
     background: var(--color-bg-primary);
-    align-items: flex-start;
+    gap: 0;
   }
 
-  .intro-col-label {
-    width: 40px;
+  /* Wide cinematic video banner */
+  .intro-video-wrapper {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    overflow: hidden;
+    position: relative;
+    background: var(--color-bg-secondary);
+  }
+
+  .intro-preview-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.35);
+  }
+
+  /* Text row below the video: tagline+desc left · giant title right */
+  .intro-text-row {
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-bottom: 32px;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 24px;
+    position: relative;
   }
 
-  .intro-col-text {
-    flex: 1;
-    padding-top: 96px;
+  /* Left column: tagline + description */
+  .intro-text-left {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
+    max-width: 420px;
+    padding-bottom: 12px; /* align baseline with large title */
   }
 
-  .intro-col-image {
-    flex: 1;
-    padding-top: 48px;
+  .intro-tagline {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
   }
+
+  .intro-sub-desc {
+    font-family: var(--font-heading);
+    font-size: clamp(16px, 1.4vw, 19px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    letter-spacing: -0.2px;
+  }
+
+  /* Giant italic title — identical to .narrative-large-title */
+  .intro-large-title {
+    font-family: var(--font-heading);
+    font-size: clamp(60px, 12vw, 200px);
+    font-weight: 600;
+    font-style: italic;
+    line-height: 0.8;
+    color: var(--color-text-primary);
+    margin: 0;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+
 
   /* Narrative Gallery Section */
   .gallery-section {
@@ -790,7 +840,7 @@
 
   .hero-desc {
     font-family: var(--font-heading);
-    font-size: clamp(14px, 1.5vw, 16px);
+    font-size: clamp(18px, 1.6vw, 20px);
     font-weight: 400;
     line-height: 1.5;
     color: var(--color-text-secondary);
@@ -829,48 +879,15 @@
 
   .quote-text {
     font-family: var(--font-heading);
-    font-size: clamp(28px, 3.8vw, 48px);
+    font-size: clamp(30px, 3.8vw, 50px);
     font-weight: 600;
     font-style: italic;
     line-height: 1.2;
     color: var(--color-text-primary);
   }
 
-  /* Intro Section Label */
-  .intro-label {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-family: var(--font-heading);
-    font-size: 11px;
-    letter-spacing: 4.4px;
-    text-transform: uppercase;
-    color: var(--color-text-primary);
-    white-space: nowrap;
-  }
 
-  .intro-image-wrapper {
-    background: var(--color-bg-subtle);
-    overflow: hidden;
-    aspect-ratio: 4 / 3;
-    position: relative;
-  }
 
-  .intro-image-wrapper img,
-  .intro-image-wrapper video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-smooth);
-  }
-
-  .intro-image-wrapper video {
-    filter: saturate(0.35) brightness(0.9) contrast(1.05);
-  }
-
-  .intro-image-wrapper:hover img,
-  .intro-image-wrapper:hover video {
-    transform: scale(1.03);
-  }
 
   /* Narrative Preview Banner (Image Reference Layout) */
   .narrative-preview {
@@ -920,8 +937,9 @@
 
   .narrative-tagline {
     font-family: var(--font-sans);
-    font-size: 11px;
+    font-size: clamp(16px, 1.3vw, 18px);
     font-weight: 600;
+    line-height: 1.4;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--color-text-secondary);
@@ -1027,7 +1045,7 @@
 
   .process-step-title {
     font-family: var(--font-heading);
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 500;
     font-style: italic;
     color: var(--color-text-primary);
@@ -1035,7 +1053,7 @@
 
   .process-step-desc {
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     line-height: 1.5;
     color: var(--color-text-secondary);
@@ -1083,7 +1101,6 @@
   /* CSS Contain — 섹션 간 레이아웃 재계산 차단 */
   .quote-section,
   .gallery-section,
-  .intro-section,
   .process-section,
   .cta-section {
     contain: layout style;
@@ -1263,31 +1280,28 @@
     }
 
     .intro-section {
-      flex-direction: column;
       padding: 64px 24px;
-      gap: 32px;
     }
 
-    .intro-col-label {
-      width: auto;
-      padding-bottom: 0;
-      justify-content: flex-start;
+    .intro-video-wrapper {
+      aspect-ratio: 4 / 3;
     }
 
-    .intro-label {
-      writing-mode: horizontal-tb;
-      transform: none;
-    }
-
-    .intro-col-text {
-      padding-top: 0;
+    .intro-text-row {
+      flex-direction: column;
       gap: 16px;
+      align-items: flex-start;
     }
 
-    .intro-col-image {
-      padding-top: 0;
-      width: 100%;
+    .intro-text-left {
+      max-width: 100%;
     }
+
+    .intro-large-title {
+      font-size: clamp(48px, 14vw, 80px);
+      align-self: flex-end;
+    }
+
 
     .gallery-section {
       padding: 64px 24px;
