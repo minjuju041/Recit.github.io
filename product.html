@@ -12,6 +12,9 @@
 
   <link rel="stylesheet" href="styles.css?v=6">
   <link rel="stylesheet" href="product.css?v=7">
+  
+  <!-- Preload Hero Assets -->
+  <link rel="preload" href="assets/Firefly.jpg" as="image">
 </head>
 <body>
 
@@ -39,7 +42,7 @@
     <!-- ??Hero Section -->
     <section class="pd-hero">
       <div class="pd-hero-bg">
-        <img src="assets/Firefly.jpg" alt="Person holding Récit Scene One Kit black box" loading="eager">
+        <img src="assets/Firefly.jpg" alt="Person holding Récit Scene One Kit black box" loading="eager" decoding="async">
         <div class="pd-hero-overlay" aria-hidden="true"></div>
       </div>
       <div class="pd-hero-content">
@@ -73,44 +76,44 @@
             <!-- Original 4 Items -->
             <div class="pd-narrative-gallery-img frame-1">
               <div class="frame-inner">
-                <img src="assets/image (1).jpg" alt="Uploaded Photo 1" loading="lazy">
+                <img src="assets/image (1).jpg" alt="Uploaded Photo 1" loading="lazy" decoding="async">
               </div>
             </div>
             <div class="pd-narrative-gallery-img frame-2">
               <div class="frame-inner">
-                <img src="assets/image (2).jpg" alt="Uploaded Photo 2" loading="lazy">
+                <img src="assets/image (2).jpg" alt="Uploaded Photo 2" loading="lazy" decoding="async">
               </div>
             </div>
             <div class="pd-narrative-gallery-img frame-3">
               <div class="frame-inner">
-                <img src="assets/image (3).jpg" alt="Uploaded Photo 3" loading="lazy">
+                <img src="assets/image (3).jpg" alt="Uploaded Photo 3" loading="lazy" decoding="async">
               </div>
             </div>
             <div class="pd-narrative-gallery-img frame-4">
               <div class="frame-inner">
-                <img src="assets/image (4).jpg" alt="Uploaded Photo 4" loading="lazy">
+                <img src="assets/image (4).jpg" alt="Uploaded Photo 4" loading="lazy" decoding="async">
               </div>
             </div>
             
             <!-- Duplicated 4 Items for Infinite Loop -->
             <div class="pd-narrative-gallery-img frame-1">
               <div class="frame-inner">
-                <img src="assets/image (1).jpg" alt="Uploaded Photo 1" loading="lazy">
+                <img src="assets/image (1).jpg" alt="Uploaded Photo 1" loading="lazy" decoding="async">
               </div>
             </div>
             <div class="pd-narrative-gallery-img frame-2">
               <div class="frame-inner">
-                <img src="assets/image (2).jpg" alt="Uploaded Photo 2" loading="lazy">
+                <img src="assets/image (2).jpg" alt="Uploaded Photo 2" loading="lazy" decoding="async">
               </div>
             </div>
             <div class="pd-narrative-gallery-img frame-3">
               <div class="frame-inner">
-                <img src="assets/image (3).jpg" alt="Uploaded Photo 3" loading="lazy">
+                <img src="assets/image (3).jpg" alt="Uploaded Photo 3" loading="lazy" decoding="async">
               </div>
             </div>
             <div class="pd-narrative-gallery-img frame-4">
               <div class="frame-inner">
-                <img src="assets/image (4).jpg" alt="Uploaded Photo 4" loading="lazy">
+                <img src="assets/image (4).jpg" alt="Uploaded Photo 4" loading="lazy" decoding="async">
               </div>
             </div>
           </div>
@@ -122,7 +125,7 @@
     <!-- Travel Video Section -->
     <section class="pd-travel-video">
       <div class="pd-travel-video-inner">
-        <video src="assets/kit%20travel.mp4" autoplay loop muted playsinline class="travel-video-bg"></video>
+        <video src="assets/kit%20travel.mp4" autoplay loop muted playsinline preload="metadata" class="travel-video-bg"></video>
         <div class="pd-travel-video-content">
           <h2 class="pd-travel-video-text">THE JOY OF TRAVEL, RECIT KIT</h2>
           <p class="pd-travel-video-subtitle">Introducing the components and usage instructions<br>for the recit kit for your trip.</p>
@@ -133,7 +136,7 @@
     <!-- Image Break Section -->
     <section class="pd-image-break">
       <div class="pd-image-break-inner">
-        <img src="assets/www.png" alt="Récit Kit Details" loading="lazy">
+        <img src="assets/www.png" alt="Récit Kit Details" loading="eager" decoding="async">
       </div>
     </section>
 
@@ -150,7 +153,7 @@
           <!-- Step 01 -->
           <div class="pd-step pd-step--01">
             <div class="pd-step-01-left">
-              <video src="assets/product_step01.mp4" autoplay muted playsinline></video>
+              <video src="assets/product_step01.mp4" autoplay muted playsinline preload="metadata"></video>
             </div>
             <div class="pd-step-01-right">
               <h3 class="pd-step-large-title"><span class="pd-step-large-num">01 </span>ARRIVAL &amp;<br>SHOOTING</h3>
@@ -173,7 +176,7 @@
               </div>
             </div>
             <div class="pd-step-02-right">
-              <video src="assets/product_step02.mp4" autoplay muted playsinline></video>
+              <video src="assets/product_step02.mp4" autoplay muted playsinline preload="metadata"></video>
             </div>
           </div>
 
@@ -189,7 +192,7 @@
               </div>
             </div>
             <div class="pd-step-03-bottom">
-              <video src="assets/product_step03.mp4" autoplay muted playsinline></video>
+              <video src="assets/product_step03.mp4" autoplay muted playsinline preload="metadata"></video>
             </div>
           </div>
         </div>
@@ -204,7 +207,7 @@
           <!-- P/C -->
           <div class="pd-instrument">
             <div class="pd-instrument-img">
-              <img src="assets/product_instrument_01.jpg" alt="P/C ??Camera and Guide Card" loading="lazy">
+              <img src="assets/product_instrument_01.jpg" alt="P/C ??Camera and Guide Card" loading="lazy" decoding="async">
             </div>
             <div class="pd-instrument-info">
               <h3 class="pd-instrument-name">CAMERA &amp; GUIDE CARD</h3>
@@ -214,7 +217,7 @@
           <!-- S/A -->
           <div class="pd-instrument">
             <div class="pd-instrument-img">
-              <img src="assets/product_instrument_02.jpg" alt="S/A ??Texture and Scent Note" loading="lazy">
+              <img src="assets/product_instrument_02.jpg" alt="S/A ??Texture and Scent Note" loading="lazy" decoding="async">
             </div>
             <div class="pd-instrument-info">
               <h3 class="pd-instrument-name">TEXTURE &amp; SCENT NOTE</h3>
@@ -224,7 +227,7 @@
           <!-- C/P -->
           <div class="pd-instrument">
             <div class="pd-instrument-img">
-              <img src="assets/product_instrument_03.jpg" alt="C/P ??Time Capsule Delivery" loading="lazy">
+              <img src="assets/product_instrument_03.jpg" alt="C/P ??Time Capsule Delivery" loading="lazy" decoding="async">
             </div>
             <div class="pd-instrument-info">
               <h3 class="pd-instrument-name">TIME CAPSULE DELIVERY</h3>
@@ -238,7 +241,7 @@
     <!-- ??Immersive Scenario -->
     <section class="pd-immersive">
       <div class="pd-immersive-bg">
-        <video src="assets/product_immersive.mp4" autoplay muted loop playsinline></video>
+        <video src="assets/product_immersive.mp4" autoplay muted loop playsinline preload="metadata"></video>
       </div>
       <div class="pd-immersive-card" onclick="this.classList.toggle('flipped')">
         <div class="pd-immersive-card-inner">
@@ -266,7 +269,7 @@
         </div>
         <div class="pd-buy-grid">
           <div class="pd-buy-img">
-            <img src="assets/product_kit_main.jpg" alt="Récit Kit — the complete sensory memory vessel" loading="lazy">
+            <img src="assets/product_kit_main.jpg" alt="Récit Kit — the complete sensory memory vessel" loading="lazy" decoding="async">
           </div>
           <div class="pd-buy-info">
             <div class="pd-buy-name-row">
@@ -322,13 +325,13 @@
         <p class="footer-copyright">&copy; 2026 Récit. ALL RIGHTS RESERVED.</p>
         <div class="footer-socials">
           <a href="#instagram" aria-label="Instagram">
-            <img src="assets/icon_instagram.svg" alt="Instagram" class="footer-social-icon">
+            <img src="assets/icon_instagram.svg" alt="Instagram logo icon" class="footer-social-icon" loading="lazy" decoding="async">
           </a>
           <a href="#twitter" aria-label="Twitter">
-            <img src="assets/icon_twitter.svg" alt="Twitter" class="footer-social-icon">
+            <img src="assets/icon_twitter.svg" alt="Twitter logo icon" class="footer-social-icon" loading="lazy" decoding="async">
           </a>
           <a href="#facebook" aria-label="Facebook">
-            <img src="assets/icon_facebook.svg" alt="Facebook" class="footer-social-icon">
+            <img src="assets/icon_facebook.svg" alt="Facebook logo icon" class="footer-social-icon" loading="lazy" decoding="async">
           </a>
         </div>
       </div>
