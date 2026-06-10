@@ -18,7 +18,7 @@
     rel="stylesheet">
 
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=14">
 </head>
 
 <body>
@@ -189,57 +189,69 @@
     </section>
 
     <!-- Process Section -->
+    <!-- Process Section -->
     <section class="process-section" id="studio">
       <div class="process-header">
         <h2 class="process-title">How It Works</h2>
       </div>
 
-      <div class="process-rows">
-        <!-- Step 1 -->
-        <div class="process-row">
-          <div class="process-image-wrapper">
-            <img src="assets/open_book.jpg"
-              alt="Cinematic mountain sunset with amber light over misty valleys and dramatic sky" loading="lazy">
-          </div>
-          <div class="process-text">
-            <span class="process-step">STEP <span class="process-step-num">01</span></span>
-            <h3 class="process-step-title">Directing</h3>
-            <p class="process-step-desc">
-              Arrive, and frame your first scene.
-            </p>
-          </div>
-        </div>
+      <!-- Scroll track: 400vh — each step ~100vh, step 3 gets extra dwell -->
+      <div class="process-scroll-track">
+        <div class="process-spotlight" id="processSpotlight">
 
-        <!-- Step 2 (Reversed / Right-Aligned) -->
-        <div class="process-row reversed">
-          <div class="process-image-wrapper">
-            <img src="assets/magnifying_glass.jpg"
-              alt="Film strips on a light table with camera lenses representing the curation process" loading="lazy">
+          <!-- Background images (dimmed, conic-sweep revealed on activation) -->
+          <div class="ps-bg-layer">
+            <img src="assets/open_book.jpg"        class="ps-bg-img" data-step="0" alt="" loading="lazy">
+            <img src="assets/magnifying_glass.jpg"  class="ps-bg-img" data-step="1" alt="" loading="lazy">
+            <img src="assets/luxury_box.jpg"        class="ps-bg-img" data-step="2" alt="" loading="lazy">
           </div>
-          <div class="process-text">
-            <span class="process-step">STEP <span class="process-step-num">02</span></span>
-            <h3 class="process-step-title">Immersion</h3>
-            <p class="process-step-desc">
-              Sink into the moment with every sense.
-            </p>
-          </div>
-        </div>
 
-        <!-- Step 3 -->
-        <div class="process-row">
-          <div class="process-image-wrapper">
-            <img src="assets/luxury_box.jpg"
-              alt="Professional filmmaker studio with CONTAX cameras, lenses and editing monitors" loading="lazy">
+          <!-- Spotlight reveal layer (cursor circle) -->
+          <div class="ps-reveal-layer" id="psRevealLayer">
+            <img src="assets/open_book.jpg"        class="ps-reveal-img" data-step="0" alt="" loading="lazy">
+            <img src="assets/magnifying_glass.jpg"  class="ps-reveal-img" data-step="1" alt="" loading="lazy">
+            <img src="assets/luxury_box.jpg"        class="ps-reveal-img" data-step="2" alt="" loading="lazy">
           </div>
-          <div class="process-text">
-            <span class="process-step">STEP <span class="process-step-num">03</span></span>
-            <h3 class="process-step-title">Sealing</h3>
-            <p class="process-step-desc">
-              Seal it away, and meet it again in a year.
-            </p>
+
+          <!-- Sweep animation line: rotates 360° from centre on each step -->
+          <div class="ps-sweep-line" id="psSweepLine" aria-hidden="true"></div>
+
+          <!-- SVG: dashed line from bottom-left to cursor -->
+          <svg class="ps-svg" aria-hidden="true">
+            <line class="ps-line" id="psLine" x1="48" y1="100%" x2="-200" y2="-200"/>
+            <circle class="ps-dot" id="psDot" cx="-200" cy="-200" r="3"/>
+          </svg>
+
+          <!-- Right ticker column -->
+          <div class="ps-text-col">
+            <div class="ps-ticker" id="psTicker">
+              <div class="ps-text-item active" data-step="0">
+                <span class="ps-step-num">STEP 01</span>
+                <h3 class="ps-step-title">Directing</h3>
+                <p class="ps-step-desc">Arrive, and frame your first scene.</p>
+              </div>
+              <div class="ps-text-item" data-step="1">
+                <span class="ps-step-num">STEP 02</span>
+                <h3 class="ps-step-title">Immersion</h3>
+                <p class="ps-step-desc">Sink into the moment with every sense.</p>
+              </div>
+              <div class="ps-text-item" data-step="2">
+                <span class="ps-step-num">STEP 03</span>
+                <h3 class="ps-step-title">Sealing</h3>
+                <p class="ps-step-desc">Seal it away, and meet it again in a year.</p>
+              </div>
+            </div>
           </div>
+
+          <!-- Bottom-left step counter -->
+          <div class="ps-counter" aria-hidden="true">
+            <span class="ps-counter-cur">01</span>
+            <span class="ps-counter-sep"> · </span>
+            <span class="ps-counter-total">03</span>
+          </div>
+
         </div>
-      </div>
+      </div><!-- /.process-scroll-track -->
     </section>
 
     <!-- CTA Section -->
@@ -300,7 +312,7 @@
   </footer>
 
   <!-- Interactive Logic -->
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=14"></script>
 
 </body>
 
