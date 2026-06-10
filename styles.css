@@ -1045,7 +1045,7 @@ body.has-custom-cursor * {
 
   .process-step {
     font-family: var(--font-heading);
-    font-size: 11px;
+    font-size: 16px;
     font-weight: 400;
     color: var(--color-text-primary);
     letter-spacing: 0.5px;
@@ -1053,7 +1053,7 @@ body.has-custom-cursor * {
 
   .process-step-title {
     font-family: var(--font-heading);
-    font-size: 32px;
+    font-size: 46px;
     font-weight: 500;
     font-style: italic;
     color: var(--color-text-primary);
@@ -1061,7 +1061,7 @@ body.has-custom-cursor * {
 
   .process-step-desc {
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     line-height: 1.5;
     color: var(--color-text-secondary);
