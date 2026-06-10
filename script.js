@@ -538,6 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typeWriterObserver.observe(ctaHeading);
   }
 
+
   // --- Play/Pause Videos on Intersection ---
   const videoObserverOptions = {
     root: null,
