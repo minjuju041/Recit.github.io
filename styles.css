@@ -277,7 +277,6 @@ body.has-custom-cursor * {
   /* Intro Feature Section */
   .intro-section {
     padding: 0;
-    overflow: hidden;
   }
 
   .intro-scroll-track {
