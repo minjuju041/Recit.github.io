@@ -178,7 +178,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ...document.querySelectorAll('.narrative-preview'),
     ...document.querySelectorAll('.process-row'),
     ...document.querySelectorAll('.cta-section'),
-    ...document.querySelectorAll('.quote-container')
+    ...document.querySelectorAll('.quote-container'),
+    ...document.querySelectorAll('.tp-profile-text'),
+    ...document.querySelectorAll('.tp-profile-img-wrapper'),
+    ...document.querySelectorAll('.tp-quote-inner')
   ];
 
   revealElements.forEach(el => {
