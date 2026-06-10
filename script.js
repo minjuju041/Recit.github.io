@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ...document.querySelectorAll('.intro-col-text'),
     ...document.querySelectorAll('.intro-col-image'),
     ...document.querySelectorAll('.narrative-preview'),
-    ...document.querySelectorAll('.process-row'),
+    // process-spotlight excluded — it uses scroll-driven sticky, not reveal animation
     ...document.querySelectorAll('.cta-section'),
     ...document.querySelectorAll('.quote-container')
   ];
@@ -615,6 +615,117 @@ document.addEventListener('DOMContentLoaded', () => {
       }, { threshold: 0.1 });
       slideshowObserver.observe(narrativeWrapper);
     }
+  }
+
+
+  // --- Process Spotlight: scroll-driven step switching + conic sweep + cursor spotlight ---
+  const processSpotlight   = document.querySelector('#processSpotlight');
+  const processScrollTrack = document.querySelector('.process-scroll-track');
+  if (processSpotlight && processScrollTrack) {
+    const psRevealLayer = document.getElementById('psRevealLayer');
+    const psBgImgs      = processSpotlight.querySelectorAll('.ps-bg-img');
+    const psRevealImgs  = processSpotlight.querySelectorAll('.ps-reveal-img');
+    const psTextItems   = processSpotlight.querySelectorAll('.ps-text-item');
+    const psTicker      = document.getElementById('psTicker');
+    const psSweepLine   = document.getElementById('psSweepLine');
+    const psLine        = document.getElementById('psLine');
+    const psDot         = document.getElementById('psDot');
+    const psCounterCur  = processSpotlight.querySelector('.ps-counter-cur');
+    const TOTAL_STEPS   = 3;
+
+    // -1 = no step activated yet (images hidden until section enters viewport)
+    let psActive  = -1;
+    let psVisible = false;
+
+    // Slide ticker so active item is vertically centred in the column
+    function updateTicker(idx) {
+      if (!psTicker) return;
+      const col  = psTicker.parentElement;
+      const colH = col.offsetHeight || processSpotlight.offsetHeight;
+      const item = psTextItems[idx];
+      const itemCenter = item.offsetTop + item.offsetHeight / 2;
+      psTicker.style.transform = `translateY(${colH / 2 - itemCenter}px)`;
+    }
+
+    // Trigger the rotating sweep-line animation
+    function triggerSweepLine() {
+      if (!psSweepLine) return;
+      psSweepLine.classList.remove('sweeping');
+      void psSweepLine.offsetWidth; // force reflow so animation restarts
+      psSweepLine.classList.add('sweeping');
+    }
+
+    function psSetStep(idx) {
+      if (idx === psActive) return;
+      // Remove active from previous step (skip on first activation)
+      if (psActive >= 0) {
+        psBgImgs[psActive].classList.remove('active');
+        psRevealImgs[psActive].classList.remove('active');
+        psTextItems[psActive].classList.remove('active');
+      }
+      psBgImgs[idx].classList.add('active');
+      psRevealImgs[idx].classList.add('active');
+      psTextItems[idx].classList.add('active');
+      if (psCounterCur) psCounterCur.textContent = String(idx + 1).padStart(2, '0');
+      psActive = idx;
+      // Sweep line + ticker update after browser paints
+      requestAnimationFrame(() => {
+        triggerSweepLine();
+        requestAnimationFrame(() => updateTicker(idx));
+      });
+    }
+
+    // Determine active step from current scroll position
+    function psOnScroll() {
+      if (!psVisible) return;
+      const rect    = processScrollTrack.getBoundingClientRect();
+      const scrolled = -rect.top;
+      const stepH   = window.innerHeight;
+      const idx     = Math.max(0, Math.min(TOTAL_STEPS - 1, Math.floor(scrolled / stepH)));
+      psSetStep(idx);
+    }
+
+    window.addEventListener('scroll', psOnScroll, { passive: true });
+
+    // Activate on first viewport entry — triggers the conic sweep for step 0
+    const entryObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        psVisible = true;
+        psOnScroll();
+        entryObserver.disconnect();
+      }
+    }, { threshold: 0.05 });
+    entryObserver.observe(processScrollTrack);
+
+    // Initial ticker layout (text item 0 has .active in HTML for size reference)
+    requestAnimationFrame(() => requestAnimationFrame(() => updateTicker(0)));
+
+    // Mouse move → circular spotlight follows cursor
+    processSpotlight.addEventListener('mousemove', (e) => {
+      const rect = processSpotlight.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      if (psRevealLayer) psRevealLayer.style.clipPath = `circle(170px at ${x}px ${y}px)`;
+      if (psLine && psDot) {
+        psLine.setAttribute('x1', '48');
+        psLine.setAttribute('y1', rect.height);
+        psLine.setAttribute('x2', x);
+        psLine.setAttribute('y2', y);
+        psDot.setAttribute('cx', x);
+        psDot.setAttribute('cy', y);
+      }
+    });
+
+    // Mouse leaves → hide spotlight
+    processSpotlight.addEventListener('mouseleave', () => {
+      if (psRevealLayer) psRevealLayer.style.clipPath = 'circle(0px at 50% 50%)';
+      if (psLine && psDot) {
+        psLine.setAttribute('x2', '-200');
+        psLine.setAttribute('y2', '-200');
+        psDot.setAttribute('cx', '-200');
+        psDot.setAttribute('cy', '-200');
+      }
+    });
   }
 
 

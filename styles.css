@@ -1,3 +1,21 @@
+/* Animatable custom property for conic-sweep reveal */
+@property --ps-sweep {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes ps-sweep-in {
+  from { --ps-sweep: 0deg; }
+  to   { --ps-sweep: 360deg; }
+}
+
+@keyframes ps-line-sweep {
+  0%   { opacity: 0.5; transform: translateY(-50%) rotate(-90deg); }
+  88%  { opacity: 0.5; }
+  100% { opacity: 0;   transform: translateY(-50%) rotate(270deg); }
+}
+
 @layer reset, base, theme, layout, components, utilities;
 
 @layer reset {
@@ -517,43 +535,93 @@ body.has-custom-cursor * {
 
   /* Process Section */
   .process-section {
-    padding: 128px 64px;
-    border-top: 1px solid var(--color-border);
-    background: var(--color-bg-primary);
+    padding: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    background: #080808;
   }
 
-  .process-rows {
-    max-width: 1152px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 80px;
+  /* Scroll track: step 0 & 1 get 100vh each; step 2 gets 200vh so it feels settled */
+  .process-scroll-track {
+    position: relative;
+    height: 400vh;
   }
 
-  .process-row {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-  }
-
-  .process-row.reversed {
-    flex-direction: row-reverse;
-  }
-
-  .process-image-wrapper {
-    flex: 1.2;
-    aspect-ratio: 16 / 9;
+  /* Spotlight stage: sticks in place while user scrolls through the track */
+  .process-spotlight {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
     overflow: hidden;
-    background: var(--color-bg-subtle);
+    background: #080808;
   }
 
-  .process-text {
-    flex: 1;
-    padding: 0 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .ps-bg-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
+
+  .ps-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    filter: brightness(0.45) grayscale(0.05);
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  /* Active image: instant opacity (mask handles entry), conic sweep from top CW */
+  .ps-bg-img.active {
+    opacity: 1;
+    transition: opacity 0s;
+    -webkit-mask-image: conic-gradient(from -90deg at 50% 50%, black var(--ps-sweep), transparent var(--ps-sweep));
+    mask-image: conic-gradient(from -90deg at 50% 50%, black var(--ps-sweep), transparent var(--ps-sweep));
+    animation: ps-sweep-in 1.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  }
+
+  /* Rotating sweep indicator line (starts at 12 o'clock, sweeps CW) */
+  .ps-sweep-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 65%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    transform-origin: 0% center;
+    transform: translateY(-50%) rotate(-90deg);
+    pointer-events: none;
+    z-index: 6;
+    opacity: 0;
+  }
+
+  .ps-sweep-line.sweeping {
+    animation: ps-line-sweep 1.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  }
+
+  /* Spotlight reveal layer — same images at full colour, clipped to circle at cursor */
+  .ps-reveal-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    clip-path: circle(0px at 50% 50%);
+    pointer-events: none;
+  }
+
+  .ps-reveal-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .ps-reveal-img.active { opacity: 1; }
 
   /* CTA Section */
   .cta-section {
@@ -1017,8 +1085,8 @@ body.has-custom-cursor * {
 
   /* Process Components */
   .process-header {
+    padding: 128px 64px 80px;
     text-align: center;
-    margin-bottom: 64px;
   }
 
   .process-title {
@@ -1028,45 +1096,109 @@ body.has-custom-cursor * {
     font-style: italic;
     line-height: 1;
     text-transform: uppercase;
-    color: var(--color-text-primary);
+    color: #ffffff;
   }
 
-  .process-image-wrapper img {
+  /* SVG connector line */
+  .ps-svg {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-smooth);
-    will-change: transform;
+    z-index: 3;
+    pointer-events: none;
+    overflow: visible;
   }
 
-  .process-image-wrapper:hover img {
-    transform: scale(1.03);
+  .ps-line {
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-width: 1px;
+    stroke-dasharray: 4 7;
   }
 
-  .process-step {
+  .ps-dot {
+    fill: #ffffff;
+    opacity: 0.7;
+  }
+
+  /* Right ticker column — fixed container on right side of panel */
+  .ps-text-col {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 5%;
+    width: 46%;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* Inner ticker strip — slides via translateY to keep active item centred */
+  .ps-ticker {
+    width: 100%;
+    text-align: right;
+    transition: transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* Individual step item */
+  .ps-text-item {
+    padding: 5vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    transition: opacity 0.5s ease;
+  }
+
+  .ps-step-num {
     font-family: var(--font-heading);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
-    color: var(--color-text-primary);
-    letter-spacing: 0.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.5s ease;
   }
 
-  .process-step-title {
+  .ps-step-title {
     font-family: var(--font-heading);
-    font-size: 32px;
+    font-size: clamp(28px, 3vw, 42px);
     font-weight: 500;
     font-style: italic;
-    color: var(--color-text-primary);
+    line-height: 1.05;
+    color: rgba(255, 255, 255, 0.18);
+    transition: font-size 0.75s cubic-bezier(0.25, 1, 0.5, 1), color 0.5s ease;
   }
 
-  .process-step-desc {
+  .ps-step-desc {
     font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--color-text-secondary);
-    letter-spacing: -0.32px;
-    max-width: 440px;
+    font-size: 24px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0);
+    max-width: none;
+    transition: color 0.5s ease;
+  }
+
+  /* Active item: large title, visible description */
+  .ps-text-item.active .ps-step-num  { color: rgba(255, 255, 255, 0.55); }
+  .ps-text-item.active .ps-step-title {
+    font-size: clamp(68px, 8.5vw, 112px);
+    color: #ffffff;
+  }
+  .ps-text-item.active .ps-step-desc { color: rgba(255, 255, 255, 0.5); }
+
+  /* Step counter */
+  .ps-counter {
+    position: absolute;
+    bottom: 40px;
+    left: 48px;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.38);
+    pointer-events: none;
   }
 
   /* Page Transition Overlay ??opacity + scale (GPU ?⑥쑉) */
@@ -1110,7 +1242,6 @@ body.has-custom-cursor * {
   .quote-section,
   .gallery-section,
   .intro-section,
-  .process-section,
   .cta-section {
     contain: layout style;
   }
@@ -1344,32 +1475,24 @@ body.has-custom-cursor * {
       padding-bottom: 0;
     }
 
-    .process-section {
-      padding: 64px 24px;
+    .process-header {
+      padding: 80px 24px 48px;
     }
 
-    .process-rows {
-      gap: 48px;
+    .process-spotlight {
+      height: 100vh;
     }
 
-    .process-row, .process-row.reversed {
-      flex-direction: column;
-      gap: 24px;
-      align-items: flex-start;
-    }
+    /* On mobile: no spotlight clip effect */
+    .ps-reveal-layer { display: none; }
+    .ps-svg { display: none; }
 
-    .process-image-wrapper {
-      width: 100%;
-    }
+    .ps-text-col { right: 4%; width: 52%; }
+    .ps-text-item { padding: 4vh 0; gap: 8px; }
+    .ps-step-title { font-size: clamp(18px, 4vw, 28px); }
+    .ps-text-item.active .ps-step-title { font-size: clamp(36px, 8vw, 52px); }
 
-    .process-text {
-      padding: 0;
-    }
-
-    .process-row.reversed .process-text {
-      text-align: left;
-      align-items: flex-start;
-    }
+    .ps-counter { bottom: 20px; left: 24px; }
 
     .cta-section {
       padding: 96px 24px;
