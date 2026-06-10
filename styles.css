@@ -308,7 +308,7 @@ body.has-custom-cursor * {
     display: flex;
     flex-direction: column;
     gap: 64px;
-    padding: 128px 64px;
+    padding: 64px 64px 128px;
     background: var(--color-bg-primary);
   }
 
